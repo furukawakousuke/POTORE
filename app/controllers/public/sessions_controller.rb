@@ -27,6 +27,6 @@ class Public::SessionsController < Devise::SessionsController
   def guest_sign_in
     poster = Poster.guest
     sign_in poster
-    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+    redirect_to post_photos_path, notice: 'ゲストユーザーとしてログインしました。'
   end
 end

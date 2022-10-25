@@ -2,8 +2,14 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h2 class="text-center">POTORE</h2>
-      <p>ポートレートにもっと広がりを・・・</p>
+      <h1 class="text-center mt-5">POTORE</h1>
+      <p class="text-center lead mt-3">ポートレートにもっと広がりを・・・</p>
+      <div class="row">
+        <div class="col-md-4 col-sm-3"></div>
+        <%= link_to "新規登録",new_poster_registration_path,class:"btn btn-outline-dark btn-sm mr-3 d-inline-block" %>
+        <%= link_to "ログイン",new_poster_session_path,class:"btn btn-outline-dark btn-sm mr-3 text-center" %>
+        <%= link_to "ゲストログイン",posters_guest_sign_in_path,method: :post,class:"btn btn-outline-dark btn-sm" %>
+      </div>
     </div>
   </div>
 </div>
