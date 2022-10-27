@@ -1,2 +1,32 @@
-<h1>Public::PostPhotos#new</h1>
-<p>Find me in app/views/public/post_photos/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+  <%= form_with model: @post_photo,url: post_photos_path,method: :post do |f| %>
+
+  <% if @post_photo.errors.any? %>
+ <div id="error">
+   <div class="errors-text">
+  <%= @post_photo.errors.count %>errors prohibited this book from being saved:
+  </div>
+ <ul>
+   <% @post_photo.errors.full_messages.each do |message| %>
+   <li class="error-message"><%= message %></li>
+   <% end %>
+ </ul>
+ </div>
+
+ <% end %>
+      <%= f.label :image,"Posted Photo",class:"lead mt-3 " %><br>
+      <%= f.file_field :image,accept:"image/*" ,class:"ml-4" %><br>
+      <%= f.label :introduction,"Caption",class:"lead mt-3" %><br>
+      <%= f.text_area :introduction, size: "40x5", class:"ml-4" %><br>
+      <%= f.label :address,"Spot",class:"lead mt-3" %><br>
+      <%= f.text_field :address,placeholder: "撮影場所　※撮影場所は必須です。",size: "40",class:"ml-4 mb-4" %><br>
+      <div class="text-center">
+      <%= f.submit "Post",class:"btn btn-outline-dark btn-sm px-4 " %>
+      </div>
+  <% end %>
+    </div>
+  </div>
+</div>

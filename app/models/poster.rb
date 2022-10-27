@@ -5,6 +5,7 @@ class Poster < ApplicationRecord
          :recoverable, :rememberable, :validatable
          has_one_attached :profile_image
          
+         #belongs_to :post_photo
   has_many :post_photos,dependent: :destroy
   has_many :relationships, foreign_key: :following_id
   has_many :reverse_of_relationships, class_name: 'Relationship',
@@ -28,4 +29,20 @@ class Poster < ApplicationRecord
       # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
       end
     end
+    
+   def get_image
+    if image.attached?
+      image
+    else
+      'no_image.jpg'
+    end
+   end
+
+  def get_image(height,width)
+   unless profile_image.attached?
+     file_path = Rails.root.join('app/assets/images/no_image.jpg')
+     profile_image.attach(io:File.open(file_path),filename: 'default-image.png',content_type: 'image/jpeg')
+   end
+    profile_image
+  end
 end

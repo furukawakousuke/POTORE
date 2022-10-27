@@ -4,12 +4,12 @@
   <%= render "public/shared/error_messages", resource: resource %>
 
   <div class="text-center">
-    <%= f.text_field :user_name, autofocus: true,placeholder: "ユーザネーム※@sample",class:"" %>
+    <%= f.text_field :user_name, autofocus: true,placeholder: "ユーザネーム※@sample",class:"mt-" %>
     <%= f.text_field :name, autofocus: true,placeholder: "ニックネーム",class:"mb-5" %>
   </div>
 
   <div class="text-center">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder:"Eメール",class:"mb-5", :size=>"40" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder:"メールアドレス",class:"mb-5", :size=>"43" %>
   </div>
 
   <div class="text-center">
@@ -23,4 +23,4 @@
   </div>
 <% end %>
 
-<%= render "public/shared/links" %>
+<!-- <%= render "public/shared/links" %> -->

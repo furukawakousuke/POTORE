@@ -1,0 +1,10 @@
+<h2>検索結果 "<%= @keyword %>"</h2>
+  <ul>
+    <% @post_photos.each do |photo| %>
+      <li>
+        <%= link_to photo_path(photo.id) do %>
+          <%= image_tag photo.get_image(10,10), if photo.image.attached? %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
