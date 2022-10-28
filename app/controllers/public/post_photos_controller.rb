@@ -18,17 +18,33 @@ class Public::PostPhotosController < ApplicationController
   end
 
   def show
+    @post_photo = PostPhoto.find(params[:id])
   end
 
   def edit
   end
   def search
-    if params[:keyword].present?
-      @photos = PostPhoto.where('caption LIKE ?', "%#{params[:keyword]}%")
-      @keyword = params[:keyword]
-    else
-      @photos = PostPhoto.all
-    end
+  @keyword = "「#{params[:search]}」の検索結果"
+  @photos = if params[:search].present?
+             PostPhoto.where(['address LIKE ? OR introduction LIKE ?',
+                        "%#{params[:search]}%", "%#{params[:search]}%"])
+           else
+             PostPhoto.none
+           end
+  end
+  
+  def update
+    @post_photo = PostPhoto.find(params[:id])
+    @post_photo = current_poster
+    @post_photo.update(post_photo_params)
+    redirect_to post_photo_path(@post_photo.id)
+  end
+  
+  def destroy
+    @post_photo = PostPhoto.find(params[:id])
+    @post_photo.poster_id = current_poster.id
+    @post_photo.destroy(post_photo_params)
+    redirect_to poster_path(@post_ohoto.id)
   end
 end
 

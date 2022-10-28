@@ -23,13 +23,9 @@ Rails.application.routes.draw do
     resources :relationships, only: [:create,:destroy]
     resources :favorites, only: [:index,:create,:destroy]
     resources :notifications, only: [:index]
-    resources :post_photos do
-    resources :comments, only: :create
-      collection do
-      get 'search'
-      end
+    resources :post_photos, only: [:new,:index,:show,:edit,:create,:update,:destroy] do
+      get :search, on: :collection
     end
-    resources :post_photos, only: [:new,:index,:show,:edit,:create,:update,:destroy]
     resources :posters, only: [:index,:show,:edit,:update]
     resources :comments, only: [:create,:destroy]
     resources :reports, only: [:new,:create]

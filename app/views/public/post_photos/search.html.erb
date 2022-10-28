@@ -1,10 +1,14 @@
-<h2>検索結果 "<%= @keyword %>"</h2>
-  <ul>
-    <% @post_photos.each do |photo| %>
-      <li>
-        <%= link_to photo_path(photo.id) do %>
-          <%= image_tag photo.get_image(10,10), if photo.image.attached? %>
+  <!--<p>クラス名などは省略してあります</p> -->
+  <div class="container">
+  <h2>検索結果 "<%= @keyword %>"</h2>
+    <div class="row">
+       <div class="col-4">
+    <% @photos.each do |photo| %>
+        <%= link_to post_photo_path(photo.id) do %>
+          <%= image_tag photo.get_image(100,100).variant(gravity: :center, resize:"640x640^", crop:"640x640+0+0"),:size => '300x200' %><br>
+        <p class="text-dark"><%= photo.address %></p>
         <% end %>
-      </li>
+       </div>
     <% end %>
-  </ul>
+    </div>
+  </div>
