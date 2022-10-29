@@ -5,11 +5,12 @@ class Poster < ApplicationRecord
          :recoverable, :rememberable, :validatable
          has_one_attached :profile_image
          
-         #belongs_to :post_photo
   has_many :post_photos,dependent: :destroy
   has_many :relationships, foreign_key: :following_id
   has_many :reverse_of_relationships, class_name: 'Relationship',
   foreign_key: :follower_id
+  has_many :followings, through: :relationships, source: :following
+  has_many :followers, through: :reverse_of_relationships, source: :follower
   has_many :comments,dependent: :destroy
   has_many :favorites,dependent: :destroy
   has_many :active_notifications, class_name: 'Notification', 
@@ -45,4 +46,18 @@ class Poster < ApplicationRecord
    end
     profile_image
   end
+  
+# フォローしたときの処理
+def follow(poster_id)
+  relationships.create(followed_id: poster_id)
+end
+# フォローを外すときの処理
+def unfollow(poster_id)
+  relationships.find_by(followed_id: poster_id).destroy
+end
+# フォローしているか判定
+def following?(poster)
+  followings.include?(poster)
+end
+  
 end

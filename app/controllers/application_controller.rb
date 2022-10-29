@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   			 keys: [:user_name,:email])
 
       #sign_upの際にnameのデータ操作を許。追加したカラム。
-  		devise_parameter_sanitizer.permit(:sign_up, keys: [:email,:user_name])
+  		devise_parameter_sanitizer.permit(:sign_up, keys: [:email,:user_name,:name])
 
     end
 end

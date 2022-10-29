@@ -1,17 +1,33 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 ml-3">
-      <div class="ml-3 h4">
+    <div class="col-6 ml-3">
+      <div class="ml-3 h3">
       <%= image_tag @poster. get_image(10,10),:size => '120x120',class:"mt-3 mr-5 mb-4 rounded-circle" %>
-      <%= @poster.user_name %><br>
-      <table>
-        <th></th>
-      </table>
+      <%= @poster.user_name %>
       </div>
+  </div>
+      <div class="col-5 mt-5">
+      <table>
+        <thead>
+        <th class="text-center border-right h3"><%= @poster.followings.count %><br>
+        <p class="h6 px-4 text-secondary">フォロー中</p></th>
+        <th class="text-center border-right h3"><%= @poster.followers.count %>
+        <p class="h6 px-4 text-secondary">フォロワー</p></th>
+        <th class="text-center h3"><%= @poster.favorites.count %>
+        <p class="h6 px-2 text-secondary">いいね数</p></th>
+        </thead>
+      </table>
+      <%= @poster.name %>
+      <%= @poster.introduction %>
+      </div>
+  
+    </div>
+      <div class="row">
+        <div class="col-12">
       <% @poster.post_photos.each do |post_photo| %>
       <%= link_to post_photo_path(post_photo.id) do %>
       <%= image_tag post_photo.get_image(100,100),:size => '220x120' %><% end %>
       <% end %>
-    </div>
-  </div>
+        </div>
+      </div>
 </div>

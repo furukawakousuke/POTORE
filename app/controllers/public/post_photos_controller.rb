@@ -15,6 +15,7 @@ class Public::PostPhotosController < ApplicationController
 
   def index
     @post_photos = PostPhoto.all
+    @poster = Poster.all
   end
 
   def show

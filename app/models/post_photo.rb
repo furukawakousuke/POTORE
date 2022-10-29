@@ -1,6 +1,5 @@
 class PostPhoto < ApplicationRecord
   has_one_attached :image
-  #has_many :posters ,dependent: :destroy
   belongs_to :poster
   has_many :comments,dependent: :destroy
   has_many :favorites,dependent: :destroy
