@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     resources :notifications, only: [:index]
     resources :post_photos, only: [:new,:index,:show,:edit,:create,:update,:destroy] do
       get :search, on: :collection
-    resources :relationships, only: [:create,:destroy]
+    resource :relationships, only: [:create,:destroy]
     get 'followings' => 'relationships#following', as: 'follow'
     get 'followers' => 'relationships#follower', as: 'follower'
     end

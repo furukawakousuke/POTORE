@@ -11,8 +11,17 @@ class Public::PostersController < ApplicationController
   end
 
   def edit
+    @poster = Poster.find(params[:id])
   end
   def update
-
+   @poster = Poster.find(params[:id])
+   @poster == current_poster
+   @poster.update(poster_params)
+   redirect_to poster_path(@poster.id)
   end
 end
+
+private
+  def poster_params
+  params.require(:poster).permit(:name,:introduction,:user_name,:email,:profile_image)
+  end

@@ -4,24 +4,27 @@ class Poster < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          has_one_attached :profile_image
-         
+
   has_many :post_photos,dependent: :destroy
-  has_many :relationships, foreign_key: :following_id
+
+  has_many :relationships, class_name: "Relationship", foreign_key: :following_id,
+  dependent: :destroy
   has_many :reverse_of_relationships, class_name: 'Relationship',
-  foreign_key: :follower_id
+  foreign_key: :follower_id,dependent: :destroy
   has_many :followings, through: :relationships, source: :following
   has_many :followers, through: :reverse_of_relationships, source: :follower
+
   has_many :comments,dependent: :destroy
   has_many :favorites,dependent: :destroy
-  has_many :active_notifications, class_name: 'Notification', 
+  has_many :active_notifications, class_name: 'Notification',
   foreign_key: :visitor_id, dependent: :destroy
-  has_many :passive_notifications, class_name: 'Notification', 
+  has_many :passive_notifications, class_name: 'Notification',
   foreign_key: :visited_id, dependent: :destroy
-  has_many :reports, class_name: "Report", 
+  has_many :reports, class_name: "Report",
   foreign_key: :reporter_id, dependent: :destroy
-  has_many :reverse_of_reports, class_name: "Report", 
+  has_many :reverse_of_reports, class_name: "Report",
   foreign_key: :reported_id, dependent: :destroy
-    
+
     def self.guest
     find_or_create_by!(email: 'guest@example.com') do |poster|
       poster.password = SecureRandom.urlsafe_base64
@@ -30,7 +33,7 @@ class Poster < ApplicationRecord
       # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
       end
     end
-    
+
    def get_image
     if image.attached?
       image
@@ -46,18 +49,22 @@ class Poster < ApplicationRecord
    end
     profile_image
   end
-  
+
 # フォローしたときの処理
 def follow(poster_id)
-  relationships.create(followed_id: poster_id)
+  relationships.create!(follower_id: poster_id)
 end
 # フォローを外すときの処理
 def unfollow(poster_id)
-  relationships.find_by(followed_id: poster_id).destroy
+  relationships.find_by(follower_id: poster_id).destroy
 end
 # フォローしているか判定
 def following?(poster)
+  
+  pp "-------------------------------------------"
+  pp poster
+  pp "--------------------------------------------"
   followings.include?(poster)
 end
-  
+
 end

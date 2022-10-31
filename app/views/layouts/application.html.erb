@@ -8,6 +8,7 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/936e751774.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
@@ -40,7 +41,7 @@
         <%= link_to "Log out",destroy_poster_session_path,method: :delete , class:"btn btn-outline-light mr-2"  %>
       </li>
       <% elsif admin_signed_in? %>
-      
+
       <li>
         <%= link_to "User List",admin_posters_path ,class:"btn btn-outline-light mr-2" %>
         </li>
@@ -54,7 +55,7 @@
           <%= link_to "Rog out",destroy_admin_session_path,method: :delete ,class:"btn btn-outline-light mr-2" %>
         </li>
       <% else %>
-      
+
       <li class="nav-item">
        <%= link_to "Top",root_path,class:"btn btn-outline-light mr-2" %>
       </li>
