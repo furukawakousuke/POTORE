@@ -8,20 +8,24 @@
       <%= image_tag @post_photo.poster.get_image(100,100),:size => '80x80',class:"rounded-circle mr-2 mt-2 " %>
       <% end %>
       <%= @post_photo.poster.user_name %>
-      <% if @post_photo.poster  == current_poster %>
-      <%= link_to "編集",edit_post_photo_path,class:"btn btn-outline-dark" %>
-      <% else %>
-      <%= link_to "通報",post_photos_path,class:"btn btn-outline-dark" %>
-      <% end %>
+      <% if current_poster.user_name != "@guest" %>
+        <% if @post_photo.poster  == current_poster %>
+         <%= link_to "編集",edit_post_photo_path,class:"btn btn-outline-dark" %>
+        <% else %>
+         <%= link_to "通報",post_photos_path,class:"btn btn-outline-dark" %>
+        <% end %>
 
-      <% if @post_photo.poster == current_poster %>
-      <%= link_to "削除",post_photo_path(@post_photo.id),method: :delete,class:"btn btn-outline-dark" %>
-      <% end %>
-
-      <% if current_poster.following?(current_poster) %>
-       <%= link_to "フォロー外す", post_photo_relationships_path(@post_photo.poster.id), method: :delete %>
-      <% else %>
-       <%= link_to "フォローする", post_photo_relationships_path(@post_photo.poster.id), method: :post %>
+        <% if @post_photo.poster == current_poster %>
+         <%= link_to "削除",post_photo_path(@post_photo.id),method: :delete,class:"btn btn-outline-dark" %>
+        <% end %>
+      
+        <% if current_poster != @post_photo.poster %>
+          <% if current_poster.following?(current_poster) %>
+            <%= link_to "フォロー解除", poster_relationships_path(@post_photo.poster.id), method: :delete %>
+          <% else %>
+            <%= link_to "フォローする", poster_relationships_path(@post_photo.poster.id), method: :post %>
+          <% end %>
+        <% end %>
       <% end %>
       <p class="lead border-bottom">Caption</p>
       <%= @post_photo.introduction %><br>

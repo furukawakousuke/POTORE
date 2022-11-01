@@ -1,0 +1,19 @@
+ <% if posters.exists? %>
+  <% posters.each do |poster| %>
+    <%= link_to poster_path(poster.id),class:"text-dark text-decoration-none" do %>
+       <%= image_tag poster.get_image(100,100),:size => '80x80',class:"rounded-circle mr-2 mt-2 " %>
+       <span class="mr-5 ml-3">
+       <%= poster.user_name %>
+       </span>
+          <% if current_poster != posters %>
+            <% if current_poster.following?(current_poster) %>
+             <%= link_to "フォロー解除", poster_relationships_path(poster.id), method: :delete,class:"btn btn-outline-info ml-5" %>
+            <% else %>
+             <%= link_to "フォローする", poster_relationships_path(poster.id), method: :post,class:"btn btn-outline-info ml-5" %>
+            <% end %>
+          <% end %>
+       <% end %>
+   <% end %>
+   <% else %>
+     <p>ユーザーはいません</p>
+  <% end %>

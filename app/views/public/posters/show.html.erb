@@ -7,21 +7,27 @@
       </div>
     </div>
       <div class="col-lg-6 col-md-7 mt-5">
-      <table>
-        <thead>
-        <th class="text-center border-right h3"><%= @poster.followings.count %><br>
-        <p class="h6 px-4 text-secondary">フォロー中</p></th>
-        <th class="text-center border-right h3"><%= @poster.followers.count %>
-        <p class="h6 px-4 text-secondary">フォロワー</p></th>
-        <th class="text-center h3"><%= @poster.favorites.count %>
-        <p class="h6 px-2 text-secondary">いいね数</p></th>
-        <th class="pl-1"><%= link_to edit_poster_path,class:"btn btn-outline-dark" do %>
-        <i class="fa-solid fa-gear h5 mt-2"></i>
-        <% end %></th>
-        <th><%= link_to new_post_photo_path,class:"btn btn-white" do %>
-        <i class="fa-solid fa-circle-plus h3 text-dark mt-2 ml-2"></i><% end %></th>
-        </thead>
-      </table>
+        <table>
+          <thead>
+          <th class="text-center border-right h3"><%= link_to poster_follow_path(@poster.id),class:"text-dark text-decoration-none" do %>
+          <%= @poster.followings.count %><br>
+          <p class="h6 px-4 text-secondary">フォロー中</p><% end %></th>
+          <th class="text-center border-right h3"><%= link_to poster_follower_path(@poster.id),class:"text-dark text-decoration-none" do %>
+          <%= @poster.followers.count %>
+          <p class="h6 px-4 text-secondary">フォロワー</p><% end %></th>
+          <th class="text-center h3"><%= @poster.favorites.count %>
+          <p class="h6 px-2 text-secondary">いいね数</p></th>
+           <% if @poster.user_name != "@guest" %>
+             <% if current_poster == @poster %>
+              <th class="pl-1"><%= link_to edit_poster_path,class:"btn btn-outline-dark" do %>
+              <i class="fa-solid fa-gear h5 mt-2"></i>
+             <% end %></th>
+              <th><%= link_to new_post_photo_path,class:"btn btn-white" do %>
+              <i class="fa-solid fa-circle-plus h3 text-dark mt-2 ml-2"></i><% end %></th>
+             <% end %>
+           <% end %>
+          </thead>
+        </table>
       </div>
     </div>
    </div>
@@ -30,12 +36,16 @@
          <span class="h4 mt-0">
          <%= @poster.name %>
          </span>
-         <% if current_poster.following?(current_poster) %>
-       <%= link_to "フォロー外す", post_photo_relationships_path(@poster.id), method: :delete,class:"btn btn-outline-info ml-3" %>
-      <% else %>
-       <%= link_to "フォローする", post_photo_relationships_path(@poster.id), method: :post,class:"btn btn-outline-info ml-3" %>
-      <% end %><br>
-         
+         <% if current_poster.user_name != "@guest" %>
+           <% if current_poster != @poster %>
+             <% if current_poster.following?(current_poster) %>
+              <%= link_to "フォロー解除", poster_relationships_path(@poster.id), method: :delete,class:"btn btn-outline-info ml-3" %>
+             <% else %>
+              <%= link_to "フォローする", poster_relationships_path(@poster.id), method: :post,class:"btn btn-outline-info ml-3" %>
+             <% end %>
+           <% end %>
+         <% end %><br>
+
          <div class="mt-3">
          <%= @poster.introduction %>
          <br>
