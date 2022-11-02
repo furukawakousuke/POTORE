@@ -1,5 +1,13 @@
 class Public::PostersController < ApplicationController
+  before_action :authenticate_poster!
+
   def index
+      @keyword =  "#{params[:keyward]}"
+    @posters = if params[:keyword].present?
+      Poster.where(['name LIKE ? OR user_name LIKE ?', "%#{params[:keyword]}%","%#{params[:keyward]}%"])
+    else
+      Poster.all
+    end
   end
 
   def show

@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       get :search, on: :collection
     end
     resources :posters, only: [:index,:show,:edit,:update] do
+    get :search, on: :collection
     resource :relationships, only: [:create,:destroy]
     get 'followings' => 'relationships#followings', as: 'follow'
     get 'followers' => 'relationships#followers', as: 'follower'

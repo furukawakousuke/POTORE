@@ -1,4 +1,6 @@
 class Public::RelationshipsController < ApplicationController
+  before_action :authenticate_poster!
+  
   def create
     current_poster.follow(params[:poster_id])
     redirect_to request.referer

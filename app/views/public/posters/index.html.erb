@@ -1,2 +1,26 @@
-<h1>Public::Posters#index</h1>
-<p>Find me in app/views/public/posters/index.html.erb</p>
+<div class="container">
+
+  <%= render 'layouts/search',poster: @posters,post_photos: @post_photos,keyward: @keyward %>
+
+
+  <h2>検索結果 "<%= @keyword %>"</h2>
+  <ul class="">
+    <% @posters.each do |poster| %>
+     <% if poster.user_name != "@guest" %>
+       <li class="border-bottom list-unstyled">
+        <%= link_to poster_path(poster.id) do %>
+          <%= image_tag poster.get_image(100,100).variant(gravity: :center, resize:"640x640^", crop:"640x640+0+0"),
+          :size => '80x80',class:"rounded-circle" %>
+          <% if poster.name != nil  %>
+          <%= poster.name %>
+          <% else %>
+          <%= poster.user_name %>
+          <% end %>
+        <% end %>
+        <% end %>
+       </li>
+      <% end %>
+  </ul>
+
+
+</div>
