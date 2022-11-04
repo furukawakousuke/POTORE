@@ -16,4 +16,8 @@ class PostPhoto < ApplicationRecord
    end
     image
   end
+  
+  def favorited_by?(poster)
+    favorites.exists?(poster_id: poster.id)
+  end
 end

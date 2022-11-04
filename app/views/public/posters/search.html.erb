@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-11">
+             <h4 class="lead mt-3">Search</h4>
+ <div class="text-center">
+  <%= form_with url: search_posters_path, method: :get, local: true do |f| %>
+    <%= f.text_field :search, class: 'mt-3 mb-5', placeholder: "キーワード検索",:size=>"30"  %>
+    <%= f.button :type => "submit" do %>
+      <i class="fas fa-search"></i>
+    <% end %>
+  <% end %>
+   </div>  
+      <ul class="">
+       <% @posters.each do |poster| %>
+        <% if poster.user_name != "@guest" %>
+          <li class="border-bottom list-unstyled font-weight-bold">
+           <%= link_to poster_path(poster.id) do %>
+             <%= image_tag poster.get_image(100,100).variant(gravity: :center, resize:"640x640^", crop:"640x640+0+0"),
+             :size => '80x80',class:"rounded-circle mr-4 my-2" %>
+             <% if poster.name != nil  %>
+             <span class="text-dark"><%= poster.name %></span>
+             <% else %>
+             <span class="text-dark"><%= poster.user_name %></span>
+             <% end %>
+           <% end %>
+           <% end %>
+          </li>
+         <% end %>
+      </ul>
+      
+    </div>
+  </div>
+</div>

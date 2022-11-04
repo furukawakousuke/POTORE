@@ -1,0 +1,19 @@
+<div class="container mt-5">
+  <% @favorite_posts.each_slice(3) do |slice| %>
+  <div class="row">
+      <% slice.reverse.each do |favorite| %>
+    <div class="col-md-5 col-sm-8 mt-2 ml-5">
+      <%= link_to post_photo_path(favorite) do %>
+      <%= image_tag favorite.get_image(10,10),:size => '300x200',class:"mt-2" %><% end %><br>
+    </div>
+    <div class="col-md-5 col-sm-8 mt-5 ml-5">
+            <div class="mt-"><%= favorite.address %></div><br>
+            <%= favorite.introduction %>
+          </div>
+
+          <div class=" col-10 border-bottom ml-5 my-2"></div>
+        <% end %>
+       </div>
+      <% end %>
+  </div>
+</div>

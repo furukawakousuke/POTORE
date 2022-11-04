@@ -32,7 +32,23 @@
       <p class="lead border-bottom pt-4">Post</p>
       <%= @post_photo.address %><br>
       <p class="lead border-bottom pt-4">Comment</p>
-
+      
+      
+      <% if current_poster.user_name != "@guest" %>
+      <% if @post_photo.favorited_by?(current_poster) %>
+       <p class="text-right pt-3">
+        <%= link_to post_photo_favorites_path(@post_photo), method: :delete do %>
+        <span class="text-danger h3"><i class="fa-solid fa-heart"></i><%= @post_photo.favorites.count %></span>
+        <% end %>
+       </p>
+      <% else %>
+      <p class="text-right pt-3">
+        <%= link_to post_photo_favorites_path(@post_photo), method: :post do %>
+        <span class="text-dark h3"><i class="fa-regular fa-heart"></i><%= @post_photo.favorites.count %></span>
+      <% end %>
+      </p>
+    <% end %>
+  <% end %>
     </div>
   </div>
 </div>

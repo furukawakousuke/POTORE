@@ -15,8 +15,9 @@
           <th class="text-center border-right h3"><%= link_to poster_follower_path(@poster.id),class:"text-dark text-decoration-none" do %>
           <%= @poster.followers.count %>
           <p class="h6 px-4 text-secondary">フォロワー</p><% end %></th>
-          <th class="text-center h3"><%= @poster.favorites.count %>
-          <p class="h6 px-2 text-secondary">いいね数</p></th>
+          <th class="text-center h3"><%= link_to favorites_poster_path(@poster),class:"text-dark text-decoration-none" do %>
+          <%= @poster.favorites.count %>
+          <p class="h6 px-2 text-secondary">いいね数</p><% end %></th>
            <% if @poster.user_name != "@guest" %>
              <% if current_poster == @poster %>
               <th class="pl-1"><%= link_to edit_poster_path,class:"btn btn-outline-dark" do %>

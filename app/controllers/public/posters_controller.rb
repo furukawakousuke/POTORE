@@ -21,6 +21,22 @@ class Public::PostersController < ApplicationController
   def edit
     @poster = Poster.find(params[:id])
   end
+
+  def search
+    @keyword =  "#{params[:search]}"
+    @posters = if params[:search].present?
+      Poster.where(['name LIKE ? OR user_name LIKE ?', "%#{params[:search]}%","%#{params[:search]}%"])
+    else
+      Poster.all
+    end
+  end
+  
+  def favorites
+    @poster = Poster.find(params[:id])
+    favorites = Favorite.where(poster_id: @poster.id).pluck(:post_photo_id)
+    @favorite_posts = PostPhoto.find(favorites)
+  end
+
   def update
    @poster = Poster.find(params[:id])
    @poster.update(poster_params)
