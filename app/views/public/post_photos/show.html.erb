@@ -20,7 +20,7 @@
         <% end %>
 
         <% if current_poster != @post_photo.poster %>
-          <% if current_poster.following?(current_poster) %>
+          <% if current_poster.following?(@post_photo.poster) %>
             <%= link_to "フォロー解除", poster_relationships_path(@post_photo.poster.id), method: :delete,class:"btn btn-outline-primary" %>
           <% else %>
             <%= link_to "フォローする", poster_relationships_path(@post_photo.poster.id), method: :post,class:"btn btn-outline-primary" %>

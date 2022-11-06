@@ -10,10 +10,10 @@
         <table>
           <thead>
           <th class="text-center border-right h3"><%= link_to poster_follow_path(@poster.id),class:"text-dark text-decoration-none" do %>
-          <%= @poster.followings.count %><br>
+          <%= @poster.followers.count %><br>
           <p class="h6 px-4 text-secondary">フォロー中</p><% end %></th>
           <th class="text-center border-right h3"><%= link_to poster_follower_path(@poster.id),class:"text-dark text-decoration-none" do %>
-          <%= @poster.followers.count %>
+          <%= @poster.followings.count %>
           <p class="h6 px-4 text-secondary">フォロワー</p><% end %></th>
           <th class="text-center h3"><%= link_to favorites_poster_path(@poster),class:"text-dark text-decoration-none" do %>
           <%= @poster.favorites.count %>
@@ -39,7 +39,7 @@
          </span>
          <% if current_poster.user_name != "@guest" %>
            <% if current_poster != @poster %>
-             <% if current_poster.following?(current_poster) %>
+             <% if current_poster.following?(poster) %>
               <%= link_to "フォロー解除", poster_relationships_path(@poster.id), method: :delete,class:"btn btn-outline-info ml-3" %>
              <% else %>
               <%= link_to "フォローする", poster_relationships_path(@poster.id), method: :post,class:"btn btn-outline-info ml-3" %>

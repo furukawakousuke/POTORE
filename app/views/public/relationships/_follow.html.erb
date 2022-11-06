@@ -6,7 +6,7 @@
        <%= poster.user_name %>
        </span>
           <% if current_poster != posters %>
-            <% if current_poster.following?(current_poster) %>
+            <% if current_poster.following?(poster) %>
              <%= link_to "フォロー解除", poster_relationships_path(poster.id), method: :delete,class:"btn btn-outline-info ml-5" %>
             <% else %>
              <%= link_to "フォローする", poster_relationships_path(poster.id), method: :post,class:"btn btn-outline-info ml-5" %>

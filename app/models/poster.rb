@@ -11,9 +11,8 @@ class Poster < ApplicationRecord
   dependent: :destroy
   has_many :reverse_of_relationships, class_name: 'Relationship',
   foreign_key: :follower_id,dependent: :destroy
-  has_many :followings, through: :relationships, source: :following
-  has_many :followers, through: :reverse_of_relationships, source: :follower
-
+  has_many :followers, through: :relationships, source: :follower
+  has_many :followings, through: :reverse_of_relationships, source: :following
   has_many :comments,dependent: :destroy
   has_many :favorites,dependent: :destroy
   has_many :active_notifications, class_name: 'Notification',
@@ -52,7 +51,7 @@ class Poster < ApplicationRecord
 
 # フォローしたときの処理
 def follow(poster_id)
-  relationships.create!(follower_id: poster_id)
+  relationships.create(follower_id: poster_id)
 end
 # フォローを外すときの処理
 def unfollow(poster_id)
@@ -64,7 +63,7 @@ def following?(poster)
   pp "-------------------------------------------"
   pp poster
   pp "--------------------------------------------"
-  followings.include?(poster)
+  followers.include?(poster)
 end
 
  def create_notification_follow!(current_poster)
