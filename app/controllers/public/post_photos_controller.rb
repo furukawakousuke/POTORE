@@ -1,6 +1,6 @@
 class Public::PostPhotosController < ApplicationController
   before_action :authenticate_poster!
-  
+
   def new
     @post_photo = PostPhoto.new
   end
@@ -22,6 +22,7 @@ class Public::PostPhotosController < ApplicationController
 
   def show
     @post_photo = PostPhoto.find(params[:id])
+    @comment = Comment.new
   end
 
   def edit
@@ -35,14 +36,14 @@ class Public::PostPhotosController < ApplicationController
              PostPhoto.none
            end
   end
-  
+
   def update
     @post_photo = PostPhoto.find(params[:id])
     @post_photo = current_poster
     @post_photo.update(post_photo_params)
     redirect_to post_photo_path(@post_photo.id)
   end
-  
+
   def destroy
     @post_photo = PostPhoto.find(params[:id])
     @post_photo.poster_id = current_poster.id

@@ -12,18 +12,18 @@
         <% if @post_photo.poster  == current_poster %>
          <%= link_to "編集",edit_post_photo_path,class:"btn btn-outline-dark" %>
         <% else %>
-         <%= link_to "通報",post_photos_path,class:"btn btn-outline-dark" %>
+         <%= link_to "通報",post_photos_path,class:"btn btn-danger" %>
         <% end %>
 
         <% if @post_photo.poster == current_poster %>
          <%= link_to "削除",post_photo_path(@post_photo.id),method: :delete,class:"btn btn-outline-dark" %>
         <% end %>
-      
+
         <% if current_poster != @post_photo.poster %>
           <% if current_poster.following?(current_poster) %>
-            <%= link_to "フォロー解除", poster_relationships_path(@post_photo.poster.id), method: :delete %>
+            <%= link_to "フォロー解除", poster_relationships_path(@post_photo.poster.id), method: :delete,class:"btn btn-outline-primary" %>
           <% else %>
-            <%= link_to "フォローする", poster_relationships_path(@post_photo.poster.id), method: :post %>
+            <%= link_to "フォローする", poster_relationships_path(@post_photo.poster.id), method: :post,class:"btn btn-outline-primary" %>
           <% end %>
         <% end %>
       <% end %>
@@ -33,8 +33,31 @@
       <%= @post_photo.address %><br>
       <p class="lead border-bottom pt-4">Comment</p>
       
+      <!-- コメントの記述 -->
+      
+       <% @post_photo.comments.each do |comment| %>
+       <%= image_tag comment.poster.get_image(100,100),:size => '30x30',class:"rounded-circle mr-2 " %>
+       <%= comment.poster.name %><br>
+       <%= comment.text %><p class="ml-5 text-right"><%= comment.created_at.strftime('%Y/%m/%d') %>
+        
+        <% if comment.poster == current_poster %>
+          <% if current_poster.user_name != "@guest" %>
+          <%= link_to "削除", post_photo_comment_path(comment.post_photo, comment), method: :delete,class:"btn btn-outline-danger btn-sm" %>
+          <% end %></p>
+        <% end %>
+      <p class="text-secondary text-right">コメント件数：<%= @post_photo.comments.count %></p>
+       <% end %>
+      <div>
+        <% if current_poster.user_name != "@guest" %>
+         <%= form_with model: [@post_photo, @comment] do |f| %>
+         <%= f.text_area :text, rows: '5', placeholder: "Comment", size: "35x2" %>
+         <%= f.submit "Comments",class:"btn btn-outline-dark btn-sm mb-4" %>
+         <% end %>
+        <% end %>
+      </div>
       
       <% if current_poster.user_name != "@guest" %>
+      <!-- いいねの記述 -->
       <% if @post_photo.favorited_by?(current_poster) %>
        <p class="text-right pt-3">
         <%= link_to post_photo_favorites_path(@post_photo), method: :delete do %>

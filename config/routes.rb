@@ -22,7 +22,8 @@ Rails.application.routes.draw do
     resources :notifications, only: [:index]
     resources :post_photos, only: [:new,:index,:show,:edit,:create,:update,:destroy] do
       get :search, on: :collection
-      resource :favorites, only: [:create,:destroy]
+      resource :favorites, only: [:create,:destroy]  
+      resources :comments, only: [:create,:destroy]
     end
     resources :posters, only: [:index,:show,:edit,:update] do
     get :search, on: :collection
@@ -33,7 +34,6 @@ Rails.application.routes.draw do
        get :favorites
       end
     end
-    resources :comments, only: [:create,:destroy]
     resources :reports, only: [:new,:create]
 
   end

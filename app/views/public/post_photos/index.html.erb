@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col-7">
+    <div class="col-lg-7 col-sm-8">
       <h4 class="mt-3 lead">Post a Photo</h4>
     </div>
-      <div class="col-5">
+      <div class="col-lg-5 col-md-8">
         <%= form_with url: search_post_photos_path, method: :get, local: true do |f| %>
          <%= f.text_field :search, class: 'mt-3 mb-5', placeholder: "キーワード検索",:size=>"30"  %>
          <%= f.button :type => "submit" do %>
