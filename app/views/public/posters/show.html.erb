@@ -39,7 +39,7 @@
          </span>
          <% if current_poster.user_name != "@guest" %>
            <% if current_poster != @poster %>
-             <% if current_poster.following?(poster) %>
+             <% if current_poster.following?(@poster) %>
               <%= link_to "フォロー解除", poster_relationships_path(@poster.id), method: :delete,class:"btn btn-outline-info ml-3" %>
              <% else %>
               <%= link_to "フォローする", poster_relationships_path(@poster.id), method: :post,class:"btn btn-outline-info ml-3" %>

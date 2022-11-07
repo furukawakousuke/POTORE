@@ -1,9 +1,10 @@
+<h5 class="lead mt-3 ml-5 pl-3">Notification</h5>
 <div class="container">
   <div class="row">
-    <div class="col-10">
+    <div class="col-12">
       <!--/ 自分の投稿に対するいいね、コメントは通知に表示しない -->
-      <h3 class="text-center">通知</h3>
-    <hr>
+     
+
 <% if @notifications.exists? %>
     <div class="users-index">
         <%= render @notifications %>
