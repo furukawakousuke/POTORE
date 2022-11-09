@@ -5,11 +5,7 @@ class Public::CommentsController < ApplicationController
   @comment = current_poster.comments.new(comment_params)
   @comment.post_photo_id = post_photo.id
   @post = @comment.post_photo
-  #フォロー通知
-  @poster = Poster.find(params[:relationship][:follower_id])
-	  current_poster.follow!(@poster)
-	  #通知の作成
-	  @poster.create_notification_follow!(current_poster)
+
 	  
   if @comment.save
      @post.create_notification_comment!(current_poster, @comment.id)

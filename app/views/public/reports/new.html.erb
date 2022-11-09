@@ -1,2 +1,15 @@
-<h1>Public::Reports#new</h1>
-<p>Find me in app/views/public/reports/new.html.erb</p>
+<h5 class="lead mt-3 ml-5 pl-3 mb-4">Report</h5>
+<div class="container text-center">
+  <div class="row text-center">
+    <div class="col-mg-8 col-10">
+      <p class="mb-5 mt-5">この投稿を通報する理由を詳しく教えてください。</p>
+      <%= form_with model:[@post_photo, @report] do |f| %>
+  <div class="form-group">
+    <%= f.text_area :reason,placeholder:"通報理由を記入してください。",rows:'3',:size=> '5x5', class:"form-control" %>
+    <%= f.submit "通報する",
+    data: {confirm: "報告内容が間違いなければOKボタンを押してください。" }, class: "btn btn-outline-danger mt-3" %>
+  </div>
+<% end %>
+    </div>
+  </div>
+</div>

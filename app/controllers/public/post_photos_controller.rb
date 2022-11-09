@@ -26,6 +26,8 @@ class Public::PostPhotosController < ApplicationController
   end
 
   def edit
+    @post_photo = PostPhoto.find(params[:id])
+    
   end
   def search
   @keyword = "「#{params[:search]}」の検索結果"
@@ -47,8 +49,8 @@ class Public::PostPhotosController < ApplicationController
   def destroy
     @post_photo = PostPhoto.find(params[:id])
     @post_photo.poster_id = current_poster.id
-    @post_photo.destroy(post_photo_params)
-    redirect_to poster_path(@post_ohoto.id)
+    @post_photo.destroy
+    redirect_to poster_path(@post_photo.id)
   end
 end
 

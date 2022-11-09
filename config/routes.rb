@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       get :search, on: :collection
       resource :favorites, only: [:create,:destroy]  
       resources :comments, only: [:create,:destroy]
+    resources :reports, only: [:new,:create]
     end
     resources :posters, only: [:index,:show,:edit,:update] do
     get :search, on: :collection
@@ -34,7 +35,6 @@ Rails.application.routes.draw do
        get :favorites
       end
     end
-    resources :reports, only: [:new,:create]
 
   end
 

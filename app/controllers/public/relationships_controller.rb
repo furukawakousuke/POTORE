@@ -2,7 +2,9 @@ class Public::RelationshipsController < ApplicationController
   before_action :authenticate_poster!
   
   def create
+    @poster = Poster.find(params[:poster_id])
     current_poster.follow(params[:poster_id])
+	  @poster.create_notification_follow!(current_poster)
     redirect_to request.referer
   end
   # フォロー外すとき
