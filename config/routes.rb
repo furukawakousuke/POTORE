@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: 'homes#top'
-  devise_for :admins
+  devise_for :admins, controllers: {
+  sessions: "admin/sessions"
+}
 
   devise_scope :posters do
     post 'posters/guest_sign_in' , to: 'posters/sessions#guest_sign_in'
@@ -16,6 +18,7 @@ Rails.application.routes.draw do
     get 'reports/index'
     resources :post_photos, only: [:index,:show,:destroy]
     resources :posters, only: [:index,:show]
+    resources :reports, only: [:index]
   end
   scope module: :public do
 

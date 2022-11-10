@@ -27,7 +27,7 @@ class Public::PostPhotosController < ApplicationController
 
   def edit
     @post_photo = PostPhoto.find(params[:id])
-    
+
   end
   def search
   @keyword = "「#{params[:search]}」の検索結果"
@@ -41,7 +41,7 @@ class Public::PostPhotosController < ApplicationController
 
   def update
     @post_photo = PostPhoto.find(params[:id])
-    @post_photo = current_poster
+    #@post_photo = current_poster
     @post_photo.update(post_photo_params)
     redirect_to post_photo_path(@post_photo.id)
   end
@@ -57,5 +57,6 @@ end
 private
 
   def post_photo_params
-    params.require(:post_photo).permit(:introduction,:address,:image)
+    params.require(:post_photo).permit(:introduction,:address,:longitude,
+    :latitude,:image)
   end

@@ -24,4 +24,14 @@ class Admin::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+  
+  def admin_sign_in
+    admin = Admin.admin
+    sign_in admin
+    redirect_to admmin_post_photos_path, notice: '管理側のログイン。'
+  end
+  
+  def after_sign_in_path_for(resource)
+        admin_post_photos_path
+  end
 end

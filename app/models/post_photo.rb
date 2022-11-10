@@ -8,7 +8,7 @@ class PostPhoto < ApplicationRecord
  validates:address, presence:true
  validates:introduction, presence:true
  validates:image, presence:true
- 
+
   def get_image(height,width)
    unless image.attached?
      file_path = Rails.root.join('app/assets/images/no_image.jpg')
@@ -20,7 +20,7 @@ class PostPhoto < ApplicationRecord
     def favorited_by?(poster)
     favorites.exists?(poster_id: poster.id)
     end
-  
+
     def create_notification_by(current_poster)
 	    notification = current_poster.active_notifications.new(
 	      post_photo_id: id,
@@ -37,8 +37,7 @@ class PostPhoto < ApplicationRecord
 	        save_notification_comment!(current_poster, comment_id, temp_id['poster_id'])
        end
     	# まだ誰もコメントしていない場合は、投稿者に通知を送る
-    	save_notification_comment!(current_poster, comment_id, poster_id) if temp_ids.blank?
-    end
+    	save_notification_comment!(current_poster, comment_id, poster_id) if temp_ids.blank?end
 
   	  def save_notification_comment!(current_poster, comment_id, visited_id)
         # コメントは複数回することが考えられるため、１つの投稿に複数回通知する
@@ -52,7 +51,8 @@ class PostPhoto < ApplicationRecord
         if notification.visitor_id == notification.visited_id
           notification.checked = true
         end
-        notification.save if notification.valid?
-      end
-  
+        notification.save if notification.valid?end
+
+      geocoded_by :address
+      after_validation :geocode,if: :address_changed?
 end

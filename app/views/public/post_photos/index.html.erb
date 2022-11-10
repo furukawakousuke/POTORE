@@ -11,9 +11,8 @@
          <% end %>
         <% end %>
       </div>
-      <% @post_photos.each_slice(3) do |slice| %>
        <div class="row">
-        <% slice.reverse.each do |post_photo| %>
+      <% @post_photos.reverse.each do |post_photo| %>
           <div class="col-md-5 col-sm-8 mt-2 ml-5">
             <%= link_to post_photo_path(post_photo.id) do %>
             <%= image_tag post_photo.get_image(100,100),:size => '300x200',class:"mt-2" %>
@@ -25,8 +24,7 @@
           </div>
            <br>
           <div class=" col-10 border-bottom ml-5 my-2"></div>
-        <% end %>
+       <% end %>
        </div>
-      <% end %>
     </div>
 </div>
