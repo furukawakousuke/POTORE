@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
     # 新規登録の保存機能
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up,
-  			 keys: [:user_name,:email])
+  			 keys: [:user_name,:email,:name])
 
       #sign_upの際にnameのデータ操作を許。追加したカラム。
   		devise_parameter_sanitizer.permit(:sign_up, keys: [:email,:user_name,:name])
