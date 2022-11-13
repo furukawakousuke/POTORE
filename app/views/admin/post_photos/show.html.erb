@@ -1,2 +1,38 @@
-<h1>Admin::PostPhotos#show</h1>
-<p>Find me in app/views/admin/post_photos/show.html.erb</p>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-6">
+      <%= image_tag @post_photo.get_image(100,100),:size => '470x320',class:"mt-5" %>
+      <% notice %>
+    </div>
+    <div class="col-lg-6 col-md-7">
+      <%= link_to admin_poster_path(@post_photo.poster.id) do %>
+      <%= image_tag @post_photo.poster.get_image(100,100),:size => '80x80',class:"rounded-circle mr-2 mt-2 " %>
+      <% end %>
+      <%= @post_photo.poster.user_name %>
+     <%= link_to "削除",admin_post_photo_path(@post_photo.id),method: :delete,
+     data: {confirm: "本当に削除しますか" },class:"btn btn-outline-dark" %>
+      <p class="lead border-bottom">Caption</p>
+      <%= @post_photo.introduction %><br>
+      <p class="lead border-bottom pt-4">Post</p>
+      <%= @post_photo.address %><br>
+      <% if @post_photo.longitude != nil %>
+      <%= render 'layouts/gmap', post_photo: @post_photo %>
+      <% end %>
+      <p class="lead border-bottom pt-4">Comment</p>
+
+      <!-- コメントの記述 -->
+
+       <% @post_photo.comments.each do |comment| %>
+       <%= image_tag comment.poster.get_image(100,100),:size => '30x30',class:"rounded-circle mr-2 " %>
+       <%= comment.poster.name %><br>
+       <%= comment.text %><p class="ml-5 text-right"><%= comment.created_at.strftime('%Y/%m/%d') %>
+
+        
+      <p class="text-secondary text-right">コメント件数：<%= @post_photo.comments.count %></p>
+       <% end %>
+      <div>
+        
+      </div>
+
+  </div>
+</div>

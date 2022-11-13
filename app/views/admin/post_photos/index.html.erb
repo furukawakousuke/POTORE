@@ -1,2 +1,29 @@
-<h1>Admin::PostPhotos#index</h1>
-<p>Find me in app/views/admin/post_photos/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-11">
+      <table class="mx-auto w-100 table">
+        <thead>
+          <tr>
+            <th>投稿写真</th>
+            <th>会員ID</th>
+            <th>User</th>
+            <th>撮影場所</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @post_photos.reverse.each do |post_photo| %>
+          <tr>
+            <td><%= link_to admin_post_photo_path(post_photo.id) do %>
+            <%= image_tag post_photo.get_image(100,100),:size => '160x100' %>
+            <% end %></td>
+            <td><%= post_photo.poster.id %></td>
+            <td><%= post_photo.poster.user_name %></td>
+            <td><%= post_photo.address %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= paginate @post_photos %>
+    </div>
+  </div>
+</div>

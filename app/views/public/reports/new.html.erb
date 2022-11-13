@@ -3,7 +3,7 @@
   <div class="row text-center">
     <div class="col-mg-8 col-10">
       <p class="mb-5 mt-5">この投稿を通報する理由を詳しく教えてください。</p>
-      <%= form_with model:[@post_photo, @report] do |f| %>
+      <%= form_with model: @report,url: post_photo_reports_path(@post_photo.id),method: :post do |f| %>
   <div class="form-group">
     <%= f.text_area :reason,placeholder:"通報理由を記入してください。",rows:'3',:size=> '5x5', class:"form-control" %>
     <%= f.submit "通報する",

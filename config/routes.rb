@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: 'homes#top'
-  devise_for :admins, skip: [:registrations, :passwords], controllers: {
-  sessions: "admin/sessions"
+  devise_for :admins, skip: [:registrations, :passwords], controllers:{
+  sessions: 'admin/sessions'
 }
 
   devise_scope :posters do
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     get 'reports/index'
     resources :post_photos, only: [:index,:show,:destroy]
     resources :posters, only: [:index,:show]
-    resources :reports, only: [:index]
+    resources :reports, only: [:index,:show]
   end
   scope module: :public do
 
