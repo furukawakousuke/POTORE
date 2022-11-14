@@ -50,7 +50,7 @@ class Public::PostPhotosController < ApplicationController
     @post_photo = PostPhoto.find(params[:id])
     @post_photo.poster_id = current_poster.id
     @post_photo.destroy
-    redirect_to poster_path(@post_photo.id)
+    redirect_to current_poster
   end
 end
 

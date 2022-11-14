@@ -1,6 +1,6 @@
 class Admin::PostPhotosController < ApplicationController
   def index
-    @post_photos = PostPhoto.page(params[:page]).per(10)
+    @post_photos = PostPhoto.page(params[:page]).per(10) 
   end
 
   def show

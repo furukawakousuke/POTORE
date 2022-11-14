@@ -1,19 +1,20 @@
 <div class="container">
   <div class="row">
-    <div class="col-12">
+    <div class="col-2"></div>
      <% visitor = notification.visitor %>
 <% poster = Poster.find_by(id: notification.visitor_id) %>
 
-<div class="poster-view clea text-center">
+  <div class="col-2 border-bottom">
   <%= link_to poster_path(notification.visitor) do %>
     <%= image_tag poster.get_image(100,100),:size => '80x80',class:"rounded-circle mt-2" %>
   <% end %>
+  </div>
+    <div class="col-8 pt-4 border-bottom">
   <%= notification_form(notification) %><span class="moderate-font"><%= "(#{time_ago_in_words(notification.created_at)} 前)" %></span>
   <br>
   <% if !@comment.nil? %>
     <p class="moderate-font text-center" style="color: #C0C0C0;"><%= @comment %></p>
   <% end %>
 </div>
-    </div>
   </div>
 </div>

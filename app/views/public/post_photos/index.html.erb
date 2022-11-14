@@ -13,14 +13,16 @@
       </div>
        <div class="row">
       <% @post_photos.reverse.each do |post_photo| %>
-          <div class="col-md-5 col-sm-8 mt-2 ml-5">
+          <div class="col-md-5 col-sm-8 col-8 mt-2 ml-5">
             <%= link_to post_photo_path(post_photo.id) do %>
-            <%= image_tag post_photo.get_image(100,100),:size => '300x200',class:"mt-2" %>
+            <%= image_tag post_photo.get_image(50,50),class:"mt-2 img-fluid" %>
             <% end %><br>
           </div>
           <div class="col-md-5 col-sm-8 mt-4 ml-5">
-            <div class=""><%= post_photo.address %></div><br class="mb-4">
-            <%= post_photo.introduction %>
+            <div class=""><p class="lead border-bottom">Spot</p></div>
+              <%= post_photo.address %><br>
+              <div class="mt-4"><p class="lead mb- border-bottom">Caption</p></div>
+            <%=safe_join(post_photo.introduction.split("\n"),tag(:br))%>
           </div>
            <br>
           <div class=" col-10 border-bottom ml-5 my-2"></div>

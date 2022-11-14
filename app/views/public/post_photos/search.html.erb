@@ -1,11 +1,11 @@
   <!--<p>クラス名などは省略してあります</p> -->
   <div class="container">
   <h5> "<%= @keyword %>"</h5>
-    <div class="row">
-       <div class="col-4 mt-3">
+    <div class="row mx-2">
     <% @photos.each do |photo| %>
+       <div class="col-lg-3 col-md-3 col-5 mt-3 mx-1">
         <%= link_to post_photo_path(photo.id) do %>
-          <%= image_tag photo.get_image(100,100).variant(gravity: :center, resize:"640x640^", crop:"640x640+0+0"),:size => '300x200' %><br>
+          <%= image_tag photo.get_image(100,100).variant(gravity: :center),class:"img-fluid" %><br>
         <p class="text-dark"><%= photo.address %></p>
         <% end %>
        </div>

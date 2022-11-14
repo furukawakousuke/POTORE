@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
-    <div class="col-6">
-      <p>Reports</p>
+    <div class="col-6 mt-3">
+      <p class="lead">Reports</p>
     </div>
   </div>
   <div class="row">
     <div class="col-12">
-      <table>
+      <table class="table">
         <thead>
           <tr>
             <th></th>
@@ -19,15 +19,20 @@
         <% @reports.reverse.each do |report| %>
         <tbody>
           <tr>
-            <td><%= report.id %></td>
-            <td><%= report.reporter.user_name %></td>
-            <td><%= report.reported.user_name %></td>
-            <td><%= report.post_photo.id %></td>
+            <td><%= link_to admin_report_path(report.id),class:"btn btn-outline-secondary btn-sm" do %>
+            <%= report.id %> <% end %></td>
+            <td><%= link_to admin_poster_path(report.reporter),class:"btn btn-light btn-sm" do %>
+            <%= report.reporter.user_name %><% end %></td>
+            <td><%= link_to admin_poster_path(report.reported),class:"btn btn-light btn-sm" do %>
+            <%= report.reported.user_name %><% end %></td>
+            <td><%= link_to admin_post_photo_path(report.post_photo),class:"btn btn-outline-dark btn-sm" do %>
+            <%= report.post_photo.id %><% end %></td>
             <td><%= report.updated_at.strftime('%Y/%m/%d') %></td>
           </tr>
           <% end %>
         </tbody>
       </table>
+      <%= paginate @reports %>
     </div>
   </div>
 </div>

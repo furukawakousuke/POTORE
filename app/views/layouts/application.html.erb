@@ -26,47 +26,47 @@
 
       <% if poster_signed_in? %>
       <li class="nav-item" >
-         <%= link_to "My page",poster_path(current_poster), class:"btn btn-outline-light mr-2" %>
+         <%= link_to "My page",poster_path(current_poster), class:"btn btn-outline-light mr-2 mb-2" %>
         </li>
       <li class="nav-item">
-        <%= link_to "Search",posters_path,class:"btn btn-outline-light mr-2"  %>
+        <%= link_to "Search",posters_path,class:"btn btn-outline-light mr-2 mb-2"  %>
         </li>
       <li class="nav-item">
-        <%= link_to "Post a photo",post_photos_path, class:"btn btn-outline-light mr-2" %>
+        <%= link_to "Post a photo",post_photos_path, class:"btn btn-outline-light mr-2 mb-2" %>
       </li>
       <% if unchecked_notifications.any? %>
        <i class="fa fa-circle" style="color: lightpink;"></i>
       <% end %>
       <li class="nav-item">
-        <%= link_to "Notification",notifications_path , class:"btn btn-outline-light mr-2"  %>
+        <%= link_to "Notification",notifications_path , class:"btn btn-outline-light mr-2 mb-2"  %>
       </li>
       <li class="nav-item">
-        <%= link_to "Log out",destroy_poster_session_path,method: :delete , class:"btn btn-outline-light mr-2"  %>
+        <%= link_to "Log out",destroy_poster_session_path,method: :delete , class:"btn btn-outline-light mr-2 mb-2"  %>
       </li>
       <% elsif admin_signed_in? %>
 
       <li>
-        <%= link_to "User List",admin_posters_path ,class:"btn btn-outline-light mr-2" %>
+        <%= link_to "User List",admin_posters_path ,class:"btn btn-outline-light mr-2 mb-2" %>
         </li>
         <li>
-          <%= link_to "Post List",admin_post_photos_path,class:"btn btn-outline-light mr-2" %>
+          <%= link_to "Post List",admin_post_photos_path,class:"btn btn-outline-light mr-2 mb-2" %>
         </li>
         <li>
-        <%= link_to "Reports",admin_reports_path,class:"btn btn-outline-light mr-2" %>
+        <%= link_to "Reports",admin_reports_path,class:"btn btn-outline-light mr-2 mb-2" %>
         </li>
         <li>
-          <%= link_to "Rog out",destroy_admin_session_path,method: :delete ,class:"btn btn-outline-light mr-2" %>
+          <%= link_to "Rog out",destroy_admin_session_path,method: :delete ,class:"btn btn-outline-light mr-2 mb-2" %>
         </li>
       <% else %>
 
       <li class="nav-item">
-       <%= link_to "Top",root_path,class:"btn btn-outline-light mr-2" %>
+       <%= link_to "Top",root_path,class:"btn btn-outline-light mr-2 mb-2" %>
       </li>
       <li class="nav-item">
-        <%= link_to "Sign up",new_poster_registration_path, class:"btn btn-outline-light mr-2" %>
+        <%= link_to "Sign up",new_poster_registration_path, class:"btn btn-outline-light mr-2 mb-2" %>
       </li>
       <li class="nav-item">
-      <%= link_to "Log in",new_poster_session_path, class:"btn btn-outline-light mr-2" %>
+      <%= link_to "Log in",new_poster_session_path, class:"btn btn-outline-light mr-2 mb-2" %>
       </li>
       <% end %>
 

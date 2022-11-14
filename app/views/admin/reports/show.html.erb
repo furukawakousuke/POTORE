@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12"><p class="lead mt-3">Reports Detail</p></div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-5">
+      <%= image_tag @report.post_photo.get_image(10,10), class:"img-fluid" %>
+    </div>
+    <div class="col-6 mt-3">
+      <span class="lead h4 mb-4"><%= @report.reported.user_name %></span><br>
+      <p class="lead border-bottom mt-5">Spot</p>
+      <%= @report.post_photo.address %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 ml-5">
+      <p class="font-weight-bold mt-2 border-bottom w-25 mb-1">通報者</p>
+      <%= @report.reporter.user_name %>
+      <p class="font-weight-bold border-bottom w-25 mt-3 mb-1">通報理由</p>
+      <%= @report.reason %>
+    </div>
+  </div>
+</div>
