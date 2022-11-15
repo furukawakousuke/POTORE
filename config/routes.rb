@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     get 'reports/index'
     resources :post_photos, only: [:index,:show,:destroy]
     resources :posters, only: [:index,:show]
-    resources :reports, only: [:index,:show]
+    resources :reports, only: [:index,:show,:destroy]
   end
   scope module: :public do
 

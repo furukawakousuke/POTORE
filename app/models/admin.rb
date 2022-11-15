@@ -3,8 +3,6 @@ class Admin < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-end
-
 
 
 
@@ -16,3 +14,6 @@ end
       # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
       end
     end
+    
+  
+end

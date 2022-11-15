@@ -4,18 +4,26 @@
   </div>
   <div class="row mt-3">
     <div class="col-5">
+      <%= link_to admin_post_photo_path(@report.post_photo.id) do %>
       <%= image_tag @report.post_photo.get_image(10,10), class:"img-fluid" %>
+      <% end %>
     </div>
     <div class="col-6 mt-3">
-      <span class="lead h4 mb-4"><%= @report.reported.user_name %></span><br>
+      <span class="lead h4 mb-4"><%= @report.reported.user_name %></span>
+      <%= link_to "削除",admin_report_path(@report.id),method: :delete,class:"btn btn-outline-dark btn-sm ml-3" %><br>
       <p class="lead border-bottom mt-5">Spot</p>
       <%= @report.post_photo.address %>
+      <% if @post_photo.longitude != nil %>
+      <%= render 'layouts/gmap', post_photo: @post_photo %>
+      <% end %>
+
     </div>
   </div>
   <div class="row">
     <div class="col-12 ml-5">
       <p class="font-weight-bold mt-2 border-bottom w-25 mb-1">通報者</p>
       <%= @report.reporter.user_name %>
+      <%= link_to "User Detail",admin_poster_path(@report.reporter.id),class:"btn btn-outline-dark btn-sm ml-3" %>
       <p class="font-weight-bold border-bottom w-25 mt-3 mb-1">通報理由</p>
       <%= @report.reason %>
     </div>
