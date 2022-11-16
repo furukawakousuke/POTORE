@@ -14,6 +14,8 @@ module Public::NotificationsHelper
 	    when "comment" then
 	    	@comment = Comment.find_by(id: @visitor_comment)&.text
 	    	tag.a(@visitor.name, href:poster_path(@visitor), style:"font-weight: bold;")+"が"+tag.a('あなたの投稿', href:post_photo_path(notification.post_photo_id), style:"font-weight: bold;")+"にコメントしました"
+	    when "post_photo" then
+	    	"報告を受け、管理者側から投稿写真を削除されました。"
 	  end
   end
   def unchecked_notifications

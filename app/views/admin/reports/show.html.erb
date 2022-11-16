@@ -10,7 +10,9 @@
     </div>
     <div class="col-6 mt-3">
       <span class="lead h4 mb-4"><%= @report.reported.user_name %></span>
-      <%= link_to "削除",admin_report_path(@report.id),method: :delete,class:"btn btn-outline-dark btn-sm ml-3" %><br>
+      <%= link_to "投稿を削除",admin_report_path(@report.id),
+      placeholder:"管理側から投稿を削除します、本当に削除しても良い投稿か確認してからボタンを押してください。",
+      method: :delete,class:"btn btn-outline-danger btn-sm ml-3" %><br>
       <p class="lead border-bottom mt-5">Spot</p>
       <%= @report.post_photo.address %>
       <% if @post_photo.longitude != nil %>

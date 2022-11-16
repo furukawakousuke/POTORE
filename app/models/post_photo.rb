@@ -13,7 +13,7 @@ class PostPhoto < ApplicationRecord
    unless image.attached?
      file_path = Rails.root.join('app/assets/images/no_image.jpg')
      image.attach(io:File.open(file_path),filename: 'default-image.png',content_type: 'image/jpeg')
-     
+
    end
     image
   end
@@ -56,4 +56,24 @@ class PostPhoto < ApplicationRecord
 
       geocoded_by :address
       after_validation :geocode,if: :address_changed?
+      
+      
+      #管理側からの削除通知
+      def destroy_notification_post_photo!(current_poster)
+       temp = Notification.where(["visited_id = ? and post_photo_id = ? and action = ? ",
+                                  poster_id, id, 'post_photo'])
+       if temp.blank?
+          notification = poster.active_notifications.new(
+            post_photo_id: id,
+            visited_id: poster_id,
+            action: 'post_photo'
+          )
+
+        if notification.visitor_id == notification.visited_id
+         notification.checked = true
+        end
+        notification.save if notification.valid?
+       end
+  end
+
 end

@@ -10,7 +10,8 @@
       <% end %>
       <%= @post_photo.poster.user_name %>
      <%= link_to "削除",admin_post_photo_path(@post_photo.id),method: :delete,
-     data: {confirm: "本当に削除しますか" },class:"btn btn-outline-dark" %>
+     data: {confirm: "管理側から投稿を削除します、本当に削除しても良い投稿か確認してからボタンを押してください。" },
+     class:"btn btn-outline-dark" %>
       <p class="lead border-bottom">Caption</p>
       <%= @post_photo.introduction %><br>
       <p class="lead border-bottom pt-4">Post</p>
