@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-3"></div>
-    <div class="col-6">
+    <div class="col-1 col-lg-3 col-md-2"></div>
+    <div class="col-9 col-lg-5 col-md-6">
   <%= form_with model: @post_photo,url: post_photos_path,method: :post do |f| %>
 
   <% if @post_photo.errors.any? %>
@@ -17,16 +17,19 @@
  </div>
 
  <% end %>
-      <%= f.label :image,"Posted Photo",class:"lead mt-3 " %><br>
-      <%= f.file_field :image,accept:"image/*" ,class:"ml-4" %><br>
-      <%= f.label :introduction,"Caption",class:"lead mt-3" %><br>
-      <%= f.text_area :introduction, size: "40x5", class:"ml-4" %><br>
-      <%= f.label :address,"Spot",class:"lead mt-3" %><br>
-      <%= f.text_field :address,size: "40",class:"ml-4" %>
+      <%= f.label :image,"Posted Photo",class:"lead mt-3 ml-3" %><br>
+      <div class="text-center"><%= f.file_field :image,accept:"image/*" ,class:"ml-4" %><br></div>
 
-      <!-- マップの記述
-      <input id="address" type="textbox" value="">
+      <%= f.label :introduction,"Caption",class:"lead mt-3 ml-3" %><br>
+      <div class="text-center"><%= f.text_area :introduction, size: "40x5", class:"ml-4" %><br></div>
+
+      <%= f.label :address,"Spot",class:"lead mt-3 ml-3" %><br>
+      <div class="text-center"><%= f.text_field :address,id: :spot,size: "",class:"ml-4" %></div>
+
+
+          <input id="address" type="textbox" value="",size="40">
           <input type="button" value="検索" onclick="codeAddress()">
+
           <div id='map'></div>
           <style>
          #map {
@@ -69,18 +72,20 @@ function codeAddress(){
             position: results[0].geometry.location,
             draggable: true // ドラッグ可能にする
         });
-       
+
         //二度目以降か判断
         aft = true
 
         //検索した時に緯度経度を入力する
-        document.getElementById('spot').value = results[0].geometry.location.spot();
+        document.getElementById('spot').value = document.getElementById('address').value;
+        document.getElementById('lat').value = results[0].geometry.location.lat();
         document.getElementById('lng').value = results[0].geometry.location.lng();
 
         // マーカーのドロップ（ドラッグ終了）時のイベント
         google.maps.event.addListener( marker, 'dragend', function(ev){
             // イベントの引数evの、プロパティ.latLngが緯度経度
-            document.getElementById('spot').value = ev.spot();
+            document.getElementById('address').value = ev.address();
+            document.getElementById('lat').value = ev.latLng.lat();
             document.getElementById('lng').value = ev.latLng.lng();
         });
     } else {
@@ -90,11 +95,13 @@ function codeAddress(){
 }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA05b9mBfH7_b8PN-JtEcQE1duv1x9-gkk&callback=initMap" async defer></script>
- -->
-      <div class="text-center">
-      <%= f.submit "Post",class:"btn btn-outline-dark btn-sm px-4 " %>
+
+      <div class="text-center mt-3">
+      <%= f.submit "Post",class:"btn btn-outline-dark btn-sm px-4 text-center" %>
       </div>
-  <% end %>
+
     </div>
+  <% end %>
+    <div class="col-"></div>
   </div>
 </div>
