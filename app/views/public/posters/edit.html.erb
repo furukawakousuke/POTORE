@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3 col-sm-2"></div>
-    <div class="col-6">
+    <div class="col-1 col-lg-4 col-md-2"></div>
+    <div class="col-9 col-lg-5 col-md-6">
     <%= form_with model: @poster,url: poster_path(@poster.id),method: :patch do |f| %>
     <%= f.label :profile_image,"Profile Image",class:"lead mt-3" %><br>
     <%= f.file_field :profile_image,accept: "image/*", class:"ml-4" %><br>
@@ -13,8 +13,8 @@
     <%= f.text_area :introduction, size: "35x5",class:"ml-4" %><br>
     <%= f.label :eamil,"Email",class:"lead ,mt-3" %><br>
     <%= f.text_field :email,size: "35",class:"ml-4" %>
-    <div class="text-center">
-    <%= f.submit "Edit",class:"btn btn-outline-dark btn-sm px-4 mt-3" %>
+    <div class="text-center mt-3">
+    <%= f.submit "Edit",class:"btn btn-outline-dark btn-sm px-4" %>
     </div>
     <% end %>
     </div>

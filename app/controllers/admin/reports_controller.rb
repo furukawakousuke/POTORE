@@ -10,8 +10,7 @@ class Admin::ReportsController < ApplicationController
   end
   def destroy
     @report = Report.find(params[:id])
-    @post_photo = @report.post_photo
-    if @post_photo.destroy
+    if @report.destroy
     redirect_to admin_reports_path
     
     else

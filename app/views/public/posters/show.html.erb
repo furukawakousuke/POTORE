@@ -20,11 +20,11 @@
           <p class="h6 px-2 text-secondary">いいね数</p><% end %></th>
            <% if @poster.user_name != "@guest" %>
              <% if current_poster == @poster %>
-              <th class="pl-1"><%= link_to edit_poster_path,class:"btn btn-outline-dark" do %>
-              <i class="fa-solid fa-gear h5 mt-2"></i>
+              <th class="pl-1"><%= link_to edit_poster_path,class:"btn btn-white" do %>
+              <i class="fa-solid fa-gear h3 mt-2"></i>
              <% end %></th>
               <th><%= link_to new_post_photo_path,class:"btn btn-white" do %>
-              <i class="fa-solid fa-circle-plus h3 text-dark mt-2 ml-2"></i><% end %></th>
+              <i class="fa-solid fa-circle-plus h3 text-dark mt-2 "></i><% end %></th>
              <% end %>
            <% end %>
           </thead>
