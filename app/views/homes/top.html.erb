@@ -1,10 +1,15 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-4 col-2"></div>
-    <div class="col-md-8 col-9">
-      <h1 class="text-cente ml-5 pl-4 mt-5">POTORE</h1>
+    <div class="col-12 text-center">
+      <h1 class="text-cente mr-4 mt-5">POTORE</h1>
       <p class="text-cente lead mt-3">ポートレートにもっと広がりを・・・</p>
+      <p class="text center">ポートレート(人物を主な被写体とした)用SNS投稿サイト</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4 col-md-3 col-2"></div>
+    <div class="col-lg-8  col-9 text center">
         <%= link_to "新規登録",new_poster_registration_path,class:"btn btn-outline-dark btn-sm mr-3" %>
         <%= link_to "ログイン",new_poster_session_path,class:"btn btn-outline-dark btn-sm mr-3 mx-0 " %>
         <%= link_to "ゲストログイン",homes_guest_sign_in_path,method: :post,class:"btn btn-outline-dark btn-sm" %>
@@ -12,3 +17,4 @@
     </div>
   </div>
 </div>
+<%= link_to "　　",new_admin_session_path,class:"" %>

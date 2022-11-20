@@ -59,7 +59,7 @@ class PostPhoto < ApplicationRecord
       
       
       #管理側からの削除通知
-      def destroy_notification_post_photo!(current_poster)
+     def destroy_notification_post_photo!(current_poster)
        temp = Notification.where(["visited_id = ? and post_photo_id = ? and action = ? ",
                                   poster_id, id, 'post_photo'])
        if temp.blank?
@@ -69,11 +69,11 @@ class PostPhoto < ApplicationRecord
             action: 'post_photo'
           )
 
-        if notification.visitor_id == notification.visited_id
+        if notification.post_photo_id == notification.visited_id
          notification.checked = true
         end
         notification.save if notification.valid?
        end
-  end
+     end
 
 end

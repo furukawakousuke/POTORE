@@ -11,23 +11,26 @@
          <% end %>
         <% end %>
       </div>
-       <div class="row">
+       <div class="row  bg-white">
       <% @post_photos.reverse.each do |post_photo| %>
-          <div class="col-md-5 col-sm-8 col-8 mt-2 ml-5">
+          <div class="col-sm-5 col-6 mt-5 ml-4 align-middle mx-auto">
             <%= link_to post_photo_path(post_photo.id) do %>
-            <%= image_tag post_photo.get_image(50,50),class:"mt-2 img-fluid" %>
+            <%= image_tag post_photo.get_image(50,50),class:" img-fluid " %>
             <% end %><br>
+            <span class="mt-5"><%= link_to poster_path(post_photo.poster.id),class:"text-dark btn" do %>
+            <%= image_tag post_photo.poster.get_image(100,100),:size => '30x30',class:"rounded-circle mr-2 " %>
+            <%= post_photo.poster.name %></span>
           </div>
-          <div class="col-md-5 col-sm-8 mt-2 ml-5">
-            <%= image_tag post_photo.poster.get_image(100,100),:size => '30x30',class:"rounded-circle mr-2 mb-1" %>
-            <%= post_photo.poster.name %>
-            <div class=""><p class="lead border-bottom">Spot</p></div>
+          <div class="col-md-6 col-sm-4 col-4 mt-2 ml-3 ">
+            <% end %>
+            <div class=""><p class="lead border-bottom w-75">Spot</p></div>
               <%= post_photo.address %><br>
-              <div class="mt-4"><p class="lead mb- border-bottom">Caption</p></div>
-            <%=safe_join(post_photo.introduction.split("\n"),tag(:br))%>
+              <div class="mt-4"><p class="lead border-bottom w-75">Caption</p></div>
+            
+            <%=safe_join(post_photo.introduction.truncate(50).split("\n"),tag(:br)) %>
           </div>
            <br>
-          <div class=" col-10 border-bottom ml-5 my-2"></div>
+          <div class=" col-10 border-bottom border-dark border-3 ml-5 my-2"></div>
        <% end %>
        </div>
     </div>

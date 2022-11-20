@@ -3,10 +3,10 @@
   <h5> "<%= @keyword %>"</h5>
     <div class="row mx-2">
     <% @photos.each do |photo| %>
-       <div class="col-lg-3 col-md-3 col-5 mt-3 mx-1">
-        <%= link_to post_photo_path(photo.id) do %>
+       <div class="col-lg-3 col-md-4 col-6 mt-3 ">
+        <%= link_to post_photo_path(photo.id),class:"btn text-dark" do %>
           <%= image_tag photo.get_image(100,100).variant(gravity: :center),class:"img-fluid" %><br>
-        <p class="text-dark"><%= photo.address %></p>
+        <%= photo.address %>
         <% end %>
        </div>
     <% end %>

@@ -15,7 +15,6 @@ class Public::ReportsController < ApplicationController
     if @report.save
     redirect_to post_photo_path(@post_photo.id), notice: "ご報告ありがとうございます。"
     else
-      binding.pry
       render "new"
     end
   end

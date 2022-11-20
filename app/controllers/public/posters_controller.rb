@@ -6,7 +6,7 @@ class Public::PostersController < ApplicationController
     @posters = if params[:keyword].present?
       Poster.where(['name LIKE ? OR user_name LIKE ?', "%#{params[:keyword]}%","%#{params[:keyward]}%"])
     else
-      Poster.all
+      Poster.order("RANDOM()").all
     end
   end
 

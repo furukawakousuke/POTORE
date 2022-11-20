@@ -16,7 +16,7 @@
     <div class="col-6 mt-3">
       <span class="lead h4 mb-4"><%= @report.reported.user_name %></span>
       <%= link_to "投稿を削除",admin_report_path(@report.id),
-      data: {confirm:"報告内容を削除します、投稿された写真は削除されません。"},method: :delete,
+      data: {confirm:"報告内容を削除します、(会員側の投稿は削除されません。)"},method: :delete,
       class:"btn btn-outline-danger btn-sm ml-3" %>
       <%= link_to "投稿画面へ移動",admin_post_photo_path(@report.post_photo.id),
       class:"btn btn-outline-dark btn-sm ml-3" %><br>
