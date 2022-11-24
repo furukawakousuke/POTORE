@@ -1,7 +1,7 @@
 class Admin::PostPhotosController < ApplicationController
   before_action :authenticate_admin!
   def index
-    @post_photos = PostPhoto.page(params[:page]).per(10) 
+    @post_photos = PostPhoto.order(created_at: :desc).page(params[:page])
   end
 
   def show

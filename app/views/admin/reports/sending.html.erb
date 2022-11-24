@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center mt-5">
+      <p class="mt-5">通報された側の投稿者に報告理由通り通知します。</p>
+      <p class="mb-5">文章の変更をする際は書き直しをしてください。</p>
+      <%= form_with model: @report,url: admin_report_path(@report.id),method: :patch do |f| %>
+      <%= f.text_area :reason,size: '40x5' %><br>
+      <%= f.submit "通知をする",class:"btn btn-outline-dark btn-sm mt-5" %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 class Admin::PostersController < ApplicationController
   before_action :authenticate_admin!
   def index
-    @posters = Poster.page(params[:page]).per(10)
+    @posters = Poster.order(created_at: :desc).page(params[:page])
   end
 
   def show

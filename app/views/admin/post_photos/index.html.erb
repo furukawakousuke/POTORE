@@ -1,17 +1,18 @@
 <div class="container">
   <div class="row">
     <div class="col-11">
-      <table class="mx-auto w-100 table">
+      <table class="mx-auto  table">
         <thead>
           <tr>
             <th>投稿写真</th>
             <th>会員ID</th>
             <th>User</th>
             <th>撮影場所</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          <% @post_photos.reverse.each do |post_photo| %>
+          <% @post_photos.each do |post_photo| %>
           <tr>
             <td><%= link_to admin_post_photo_path(post_photo.id) do %>
             <%= image_tag post_photo.get_image(100,100),:size => '160x100' %>
@@ -19,7 +20,11 @@
             <td><%= post_photo.poster.id %></td>
             <td><%= post_photo.poster.user_name %></td>
             <td><%= post_photo.address %></td>
+            <td><%= link_to "投稿を削除",admin_post_photo_path(post_photo.id),method: :delete,
+     data: {confirm: "管理側から投稿を削除します、本当に削除しても良い投稿か確認してからボタンを押してください。" },
+     class:"btn btn-danger btn-sm" %></td>
           </tr>
+          
           <% end %>
         </tbody>
       </table>

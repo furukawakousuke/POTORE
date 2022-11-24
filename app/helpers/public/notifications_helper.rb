@@ -6,6 +6,9 @@ module Public::NotificationsHelper
 	  your_post_photo = link_to 'あなたの投稿', post_photo_path(notification), style:"font-weight: bold;"
 	  @visitor_comment = notification.comment_id
 	  #notification.actionがfollowかlikeかcommentか
+	  @report = nil
+	  your_report = link_to post_photo_path(notification), style:"font-weight: bold;"
+	  @visitor_report = notification.report_id
 	  case notification.action
 	    when "follow" then
 	      tag.a(notification.visitor.name, href:poster_path(@visitor), style:"font-weight: bold;")+"があなたをフォローしました"
@@ -16,6 +19,9 @@ module Public::NotificationsHelper
 	    	tag.a(@visitor.name, href:poster_path(@visitor), style:"font-weight: bold;")+"が"+tag.a('あなたの投稿', href:post_photo_path(notification.post_photo_id), style:"font-weight: bold;")+"にコメントしました"
 	    when "post_photo" then
 	    	"報告を受け、管理者側から投稿写真を削除されました。"
+	    when "report" then
+	      @report = Report.find_by(id: @visitor_report)&.reason
+	    	"通報の報告がありました。"
 	  end
   end
   def unchecked_notifications

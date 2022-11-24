@@ -56,8 +56,8 @@ class PostPhoto < ApplicationRecord
 
       geocoded_by :address
       after_validation :geocode,if: :address_changed?
-      
-      
+
+
       #管理側からの削除通知
      def destroy_notification_post_photo!(current_poster)
        temp = Notification.where(["visited_id = ? and post_photo_id = ? and action = ? ",

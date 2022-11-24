@@ -15,10 +15,10 @@ Rails.application.routes.draw do
 
 
   namespace :admin do
-    get 'reports/index'
     resources :post_photos, only: [:index,:show,:destroy]
     resources :posters, only: [:index,:show]
-    resources :reports, only: [:index,:show,:destroy]
+    get 'sending/:id' => 'reports#sending',as: 'sending'
+    resources :reports, only: [:index,:show,:update,:destroy]
   end
   scope module: :public do
 

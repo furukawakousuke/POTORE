@@ -17,8 +17,8 @@
       <span class="lead h4 mb-4"><%= @report.reported.user_name %></span>
       <%= link_to "投稿を削除",admin_report_path(@report.id),
       data: {confirm:"報告内容を削除します、(会員側の投稿は削除されません。)"},method: :delete,
-      class:"btn btn-outline-danger btn-sm ml-3" %>
-      <%= link_to "投稿画面へ移動",admin_post_photo_path(@report.post_photo.id),
+      class:"btn btn-outline-danger btn-sm ml-3 mt-1 mb-1" %>
+      <%= link_to "通報された投稿者に通知する",admin_sending_path(@report.id),
       class:"btn btn-outline-dark btn-sm ml-3" %><br>
       <p class="lead border-bottom mt-5">Spot</p>
       <%= @report.post_photo.address %>

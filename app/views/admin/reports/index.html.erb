@@ -16,7 +16,7 @@
             <th>更新日時</th>
           </tr>
         </thead>
-        <% @reports.reverse.each do |report| %>
+        <% @reports.each do |report| %>
         <tbody>
           <tr>
             <td><%= link_to admin_report_path(report.id),class:"btn btn-outline-secondary btn-sm" do %>
