@@ -12,62 +12,57 @@
   </head>
 
   <body class="bg-light">
-    <header class="shadow-sm ">
-    <nav class="navbar navbar-expand-lg navbar-light bg-secondary py-4">
+    <header class="shadow-sm sticky-top">
+    <nav class="navbar navbar-expand navbar-light bg-light py-4">
       <div class=container>
-        <a class="navbar-brand" href="/post_photos"><span class="text-light lead">POTORE</span></a>
-        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        <a class="navbar-brand" href="/post_photos"><span class="text-dark lead">POTORE</span></a>
+        <!--<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon"></span>-->
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
 
 
       <% if poster_signed_in? %>
-      <li class="nav-item" >
-         <%= link_to "My page",poster_path(current_poster), class:"btn btn-outline-light mr-2 mb-2" %>
-        </li>
-      <li class="nav-item">
-        <%= link_to "Search",posters_path,class:"btn btn-outline-light mr-2 mb-2"  %>
-        </li>
-      <li class="nav-item">
-        <%= link_to "Post a photo",post_photos_path, class:"btn btn-outline-light mr-2 mb-2" %>
-      </li>
-      <% if unchecked_notifications.any? %>
-       <i class="fa fa-circle" style="color: lightpink;"></i>
+        <div class="d-none d-md-block">
+        <% if unchecked_notifications.any? %>
+         <i class=" top-0 position-absolute start-100 translate-middle border border-light rounded-circle bg-warning p-2 " style="color: lightpink;"></i>
       <% end %>
-      <li class="nav-item">
-        <%= link_to "Notification",notifications_path , class:"btn btn-outline-light mr-2 mb-2"  %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Log out",destroy_poster_session_path,method: :delete , class:"btn btn-outline-light mr-2 mb-2"  %>
-      </li>
+
+        <%= link_to "Notification",notifications_path , class:"btn btn-outline-dark mr- mb-2 position-relative" %>
+        <%= link_to "log out",destroy_poster_session_path,method: :delete , class:"btn btn-outline-dark ml-4 mb-2" %>
+    
+        </div>
+      <span class="d-md-none ">
+        <% if unchecked_notifications.any? %>
+       <i class=" top-0 position-absolute start-100 translate-middle border border-light rounded-circle bg-warning p-2 " style="color: lightpink;"></i>
+      <% end %>
+        <%= link_to notifications_path , class:"btn btn-outline-dark mr-1 mb-2 position-relative" do %>
+        <i class="fa-solid fa-bell"></i>
+        <% end %>
+        <%= link_to destroy_poster_session_path,method: :delete , class:"btn btn-outline-dark ml-4 mb-2" do %>
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <% end %>
+      </span>
       <% elsif admin_signed_in? %>
 
       <li>
-        <%= link_to "User List",admin_posters_path ,class:"btn btn-outline-light mr-2 mb-2" %>
+        <%= link_to "UserList",admin_posters_path ,class:"btn btn-outline-secondary mr-2" %>
         </li>
         <li>
-          <%= link_to "Post List",admin_post_photos_path,class:"btn btn-outline-light mr-2 mb-2" %>
+          <%= link_to "PostList",admin_post_photos_path,class:"btn btn-outline-secondary mr-2" %>
         </li>
         <li>
-        <%= link_to "Reports",admin_reports_path,class:"btn btn-outline-light mr-2 mb-2" %>
+        <%= link_to "Reports",admin_reports_path,class:"btn btn-outline-secondary mr-2" %>
         </li>
         <li>
-          <%= link_to "Log out",destroy_admin_session_path,method: :delete ,class:"btn btn-outline-light mr-2 mb-2" %>
+          <%= link_to "Logout",destroy_admin_session_path,method: :delete ,class:"btn btn-outline-secondary mr-2" %>
         </li>
       <% else %>
 
-      <li class="nav-item">
-       <%= link_to "Top",root_path,class:"btn btn-outline-light mr-2 mb-2" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Sign up",new_poster_registration_path, class:"btn btn-outline-light mr-2 mb-2" %>
-      </li>
-      <li class="nav-item">
-      <%= link_to "Log in",new_poster_session_path, class:"btn btn-outline-light mr-2 mb-2" %>
-      </li>
+       <%= link_to "Top",root_path,class:"btn btn-outline-secondary mr-2" %>
+        <%= link_to "Sign up",new_poster_registration_path, class:"btn btn-outline-secondary mr-2" %>
+      <%= link_to "Log in",new_poster_session_path, class:"btn btn-outline-secondary mr-2" %>
       <% end %>
 
       </ul>
@@ -75,7 +70,66 @@
       </div>
     </nav>
     </header>
+
+
+
+    <main class="mb-5 pb-5">
     <%= yield %>
-    
+    </main>
+
+
+
+    <footer class="bg-light text-white  fixed-bottom mt-5 border-top">
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col-12 d-flex justify-content-around">
+            <nav class="navbar navbar-expand navbar-light bg-light py-4">
+        <!--<a class="navbar-brand" href="/post_photos"><span class="text-dark lead">POTORE</span></a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                       aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+        </button>-->
+          <ul class="navbar-nav ml-auto ">
+
+      <% if poster_signed_in? %>
+      <li class="nav-item" >
+         <%= link_to poster_path(current_poster), class:" mr-4 mb-2 " do %>
+         <%= image_tag current_poster.get_image(10,10),:size => '40x40',class:"rounded-circle" %>
+         <% end %>
+        </li>
+      <li class="nav-item">
+        <%= link_to posters_path,class:"btn btn-outline-dark mx-4 mb-2" do  %>
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <% end %>
+        </li>
+        
+        <% if current_poster.user_name != "@guest" %> 
+      <li class="nav-item">
+        <%= link_to new_post_photo_path,class:"btn mr-2 mb-2" do  %>
+        <i class="fa-solid fa-circle-plus  fa-2x"></i>
+        <% end %>
+      </li>
+      <% end %>
+      <li class="nav-item" >
+        <%= link_to post_photos_path, class:"btn btn-outline-dark mx-4 mb-2" do %>
+        <i class="fa-solid fa-images"></i>
+        <% end %>
+      </li>
+      <% if current_poster.user_name != "@guest" %>
+      <li class="nav-item">
+        <%= link_to edit_poster_path(current_poster) , class:"btn btn-outline-dark ml-4 mb-2" do %>
+        <i class="fa-solid fa-gear"></i>
+        <% end %>
+      </li>
+      <% end %>
+      <% end %>
+      </ul>
+      </div>
+      </div>
+    </nav>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

@@ -11,27 +11,42 @@
          <% end %>
         <% end %>
       </div>
-       <div class="row  bg-white">
-      <% @post_photos.reverse.each do |post_photo| %>
-          <div class="col-sm-5 col-6 mt-5 ml-4 align-middle mx-auto">
-            <%= link_to post_photo_path(post_photo.id) do %>
-            <%= image_tag post_photo.get_image(50,50),class:" img-fluid " %>
-            <% end %><br>
-            <span class="mt-5"><%= link_to poster_path(post_photo.poster.id),class:"text-dark btn" do %>
-            <%= image_tag post_photo.poster.get_image(100,100),:size => '30x30',class:"rounded-circle mr-2 " %>
-            <%= post_photo.poster.name %></span>
-          </div>
-          <div class="col-md-6 col-sm-4 col-4 mt-2 ml-3 ">
-            <% end %>
-            <div class=""><p class="lead border-bottom w-75">Spot</p></div>
-              <%= post_photo.address %><br>
-              <div class="mt-4"><p class="lead border-bottom w-75">Caption</p></div>
-            
-            <%=safe_join(post_photo.introduction.truncate(50).split("\n"),tag(:br)) %>
-          </div>
-           <br>
-          <div class=" col-10 border-bottom border-dark border-3 ml-5 my-2"></div>
-       <% end %>
-       </div>
-    </div>
+      </div>
+      <div class="row">
+         <% @post_photos.reverse.each do |post_photo| %>
+        <div class="col-lg-2 col-xl-2 col-0"></div>
+        <div class="col-10 col-lg-7 col-xl-7 px-3 bg-white border-bottom w-100 mb-2 mx-5">
+         <%= link_to post_photo_path(post_photo.id) do %>
+         <%= image_tag post_photo.get_image(100,100),class:"mt-4 img-fluid" %>
+         <% end %>
+         <%= link_to poster_path(post_photo.poster),class:"btn text-dark" do %>
+         <%= image_tag post_photo.poster.get_image(10,10),:size => '40x40',class:"rounded-circle" %>
+         <%= post_photo.poster.user_name %><% end %><br>
+         <p class="lead mb-0 border-bottom w-75">Spot</p>
+         <div class="mt-1"><%= post_photo.address %></div><br>
+         <p class="lead border-bottom w-75">Caption</p>
+         <%=safe_join(post_photo.introduction.split("\n"),tag(:br))%>
+         <% if current_poster.user_name != "@guest" %>
+      <!-- いいねの記述 -->
+      <% if post_photo.favorited_by?(current_poster) %>
+       <p class="text-right pt-3">
+        <%= link_to post_photo_favorites_path(post_photo), method: :delete do %>
+        <span class="text-danger h3"><i class="fa-solid fa-heart"></i></span>
+        <% end %>
+       </p>
+      <% else %>
+      <p class="text-right pt-3">
+        <%= link_to post_photo_favorites_path(post_photo), method: :post do %>
+        <span class="text-dark h3"><i class="fa-regular fa-heart"></i></span>
+      <% end %>
+      </p>
+    <% end %>
+    
+  <% end %>
+  
+        </div>
+         <% end %>
+         
+        <div class="col-lg-3 col-xl-3 col-0"></div>
+      </div>
 </div>

@@ -1,9 +1,14 @@
 <h5 class="lead mt-3 ml-5 pl-3">Notification</h5>
+  
 <div class="container">
+  <div class="text-right">
+  <% if @notifications.exists? %>
+  <%= link_to "通知を削除",destroy_all_notifications_path,method: :delete,class:"btn btn-outline-danger mr-5" %>
+  <% end %>
+  </div>
   <div class="row">
     <div class="col-12">
       <!--/ 自分の投稿に対するいいね、コメントは通知に表示しない -->
-     
 
 <% if @notifications.exists? %>
     <div class="users-index">

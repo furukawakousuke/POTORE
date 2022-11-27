@@ -22,10 +22,14 @@ Rails.application.routes.draw do
   end
   scope module: :public do
 
-    resources :notifications, only: [:index]
+    resources :notifications, only: [:index] do
+      collection do
+        delete 'destroy_all'
+      end
+    end
     resources :post_photos, only: [:new,:index,:show,:edit,:create,:update,:destroy] do
       get :search, on: :collection
-      resource :favorites, only: [:create,:destroy]  
+      resource :favorites, only: [:create,:destroy]
       resources :comments, only: [:create,:destroy]
     resources :reports, only: [:new,:create]
     end
