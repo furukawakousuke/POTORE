@@ -15,7 +15,7 @@
     </div>
     <div class="col-6 mt-3">
       <span class="lead h4 mb-4"><%= @report.reported.user_name %></span>
-      <%= link_to "投稿を削除",admin_report_path(@report.id),
+      <%= link_to "報告内容を削除",admin_report_path(@report.id),
       data: {confirm:"報告内容を削除します、(会員側の投稿は削除されません。)"},method: :delete,
       class:"btn btn-outline-danger btn-sm ml-3 mt-1 mb-1" %>
       <%= link_to "通報された投稿者に通知する",admin_sending_path(@report.id),

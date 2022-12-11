@@ -5,7 +5,7 @@
     </div>
       <div class="col-lg-5 col-md-8">
         <%= form_with url: search_post_photos_path, method: :get, local: true do |f| %>
-         <%= f.text_field :search, class: 'mt-3 mb-5', placeholder: "キーワード検索",:size=>"30"  %>
+         <%= f.text_field :search, class: 'mt-3 mb-5', placeholder: "投稿写真を検索",:size=>"30"  %>
          <%= f.button :type => "submit" do %>
          <i class="fas fa-search"></i>
          <% end %>
@@ -13,7 +13,7 @@
       </div>
       </div>
       <div class="row">
-         <% @post_photos.reverse.each do |post_photo| %>
+         <% @post_photos.each do |post_photo| %>
         <div class="col-lg-2 col-xl-2 col-0"></div>
         <div class="col-10 col-lg-7 col-xl-7 px-3 bg-white border-bottom w-100 mb-2 mx-5">
          <%= link_to post_photo_path(post_photo.id) do %>
@@ -26,27 +26,13 @@
          <div class="mt-1"><%= post_photo.address %></div><br>
          <p class="lead border-bottom w-75">Caption</p>
          <%=safe_join(post_photo.introduction.split("\n"),tag(:br))%>
-         <% if current_poster.user_name != "@guest" %>
-      <!-- いいねの記述 -->
-      <% if post_photo.favorited_by?(current_poster) %>
-       <p class="text-right pt-3">
-        <%= link_to post_photo_favorites_path(post_photo), method: :delete do %>
-        <span class="text-danger h3"><i class="fa-solid fa-heart"></i></span>
-        <% end %>
-       </p>
-      <% else %>
-      <p class="text-right pt-3">
-        <%= link_to post_photo_favorites_path(post_photo), method: :post do %>
-        <span class="text-dark h3"><i class="fa-regular fa-heart"></i></span>
-      <% end %>
-      </p>
-    <% end %>
-    
-  <% end %>
+        <div class="py-3"></div>
   
         </div>
          <% end %>
          
         <div class="col-lg-3 col-xl-3 col-0"></div>
+        <div class="mx-auto"><%= paginate @post_photos %></div>
+        
       </div>
 </div>

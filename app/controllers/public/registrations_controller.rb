@@ -9,6 +9,9 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # def new
   #   super
   # end
+  def after_sign_in_path_for(resource)
+        post_photos_path
+  end
 
   # POST /resource
   # def create

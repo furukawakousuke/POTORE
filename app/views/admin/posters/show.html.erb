@@ -30,13 +30,21 @@
          </span><br>
 
          <div class="mt-3">
-         <%= @poster.introduction %>
+          <% if @poster.introduction != nil %>
+            <%=safe_join(@poster.introduction.split("\n"),tag(:br))%>
+          <% end %>
          <br>
          </div>
-      <% @poster.post_photos.each do |post_photo| %>
-      <%= link_to admin_post_photo_path(post_photo.id) do %>
-      <%= image_tag post_photo.get_image(100,100),:size => '220x140',class:"mt-4" %><% end %>
-      <% end %>
+     
         </div>
+      </div>
+      
+      <div class="row mb-2">
+         <% @poster.post_photos.reverse.each do |post_photo| %>
+        <div class="col-lg-4 col-md-4 col-6 px-3">
+         <%= link_to admin_post_photo_path(post_photo.id) do %>
+         <%= image_tag post_photo.get_image(100,100),class:"mt-4 img-fluid" %><% end %>
+        </div>
+         <% end %>
       </div>
 </div>

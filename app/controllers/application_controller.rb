@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
       if resource_or_scope == :admin
         new_admin_session_path
       else
-        post_photos_path
+        root_path
       end
     end
 

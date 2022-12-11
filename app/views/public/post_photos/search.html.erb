@@ -5,7 +5,7 @@
     <% @photos.each do |photo| %>
        <div class="col-lg-3 col-md-4 col-6 mt-3 ">
         <%= link_to post_photo_path(photo.id),class:"btn text-dark" do %>
-          <%= image_tag photo.get_image(100,100).variant(gravity: :center),class:"img-fluid" %><br>
+          <%= image_tag photo.get_image(100,100),class:"img-fluid" %><br>
         <%= photo.address %>
         <% end %>
        </div>

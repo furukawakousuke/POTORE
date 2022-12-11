@@ -16,8 +16,8 @@ class Public::PostPhotosController < ApplicationController
   end
 
   def index
-    @post_photos = PostPhoto.all
-    @poster = Poster.all
+    @post_photos = PostPhoto.order(created_at: :desc).page(params[:page])
+    @poster = Poster.order(created_at: :desc).page(params[:page])
   end
 
   def show
