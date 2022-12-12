@@ -2,9 +2,9 @@ class Public::PostersController < ApplicationController
   before_action :authenticate_poster!
 
   def index
-      @keyword =  "#{params[:keyward]}"
-    @posters = if params[:keyword].present?
-      Poster.where(['name LIKE ? OR user_name LIKE ?', "%#{params[:keyword]}%","%#{params[:keyward]}%"])
+      @keyword =  "#{params[:search]}"
+    @posters = if params[:search].present?
+      Poster.where(['name LIKE ? OR user_name LIKE ?', "%#{params[:search]}%","%#{params[:search]}%"])
     else
       Poster.order("RANDOM()").all
     end
