@@ -11,7 +11,7 @@
   <% end %>
 </div>
   <ul><% @user.each do |poster| %> 
-     <% if poster.user_name != "@guest" %>
+<% if poster.user_name != "@guest" %>
        <li class="border-bottom list-unstyled font-weight-bold">
         <%= link_to poster_path(poster.id) do %>
           <%= image_tag poster.get_image(100,100).variant(gravity: :center, resize:"640x640^", crop:"640x640+0+0"),
