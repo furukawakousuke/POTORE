@@ -8,6 +8,7 @@ class Public::PostersController < ApplicationController
     else
       Poster.order("RANDOM()").all
     end
+    @user = Poster.order("RANDOM()").all
   end
 
   def show
