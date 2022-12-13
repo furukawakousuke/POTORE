@@ -3,7 +3,7 @@ class Public::PostersController < ApplicationController
 
   def index
       @keyword =  "#{params[:search]}"
-    @posters = if params[:search].present?
+      @posters = if params[:search].present?
       Poster.where(['name LIKE ? OR user_name LIKE ?', "%#{params[:search]}%","%#{params[:search]}%"])
     else
       Poster.order("RANDOM()").all
