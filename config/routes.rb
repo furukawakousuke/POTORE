@@ -21,7 +21,6 @@ Rails.application.routes.draw do
     resources :reports, only: [:index,:show,:update,:destroy]
   end
   scope module: :public do
-
     resources :notifications, only: [:index] do
       collection do
         delete 'destroy_all'

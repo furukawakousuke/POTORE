@@ -6,9 +6,9 @@ class Public::PostersController < ApplicationController
       @posters = if params[:search].present?
       Poster.where(['name LIKE ? OR user_name LIKE ?', "%#{params[:search]}%","%#{params[:search]}%"])
     else
-      Poster.order("RANDOM()").all
+      Poster.all.shuffle
     end
-    @user = Poster.order("RANDOM()").all
+    @user = Poster.all.shuffle
   end
 
   def show
