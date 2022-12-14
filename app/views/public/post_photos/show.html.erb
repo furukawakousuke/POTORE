@@ -34,9 +34,7 @@
       <%=safe_join(@post_photo.introduction.split("\n"),tag(:br))%><br>
       <p class="lead border-bottom pt-4">Post</p>
       <%= @post_photo.address %><br>
-      <% if @post_photo.longitude != nil %>
       <%= render 'layouts/gmap', post_photo: @post_photo %>
-      <% end %>
       <p class="lead border-bottom pt-4">Comment</p>
 
       <!-- コメントの記述 -->
