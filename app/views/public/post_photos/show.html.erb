@@ -51,8 +51,8 @@
           <%= link_to "削除", post_photo_comment_path(comment.post_photo, comment), method: :delete,class:"btn btn-outline-danger btn-sm" %>
           <% end %></p>
         <% end %>
-      <p class="text-secondary text-right">コメント件数：<%= @post_photo.comments.count %></p>
        <% end %>
+      <p class="text-secondary text-right">コメント件数：<%= @post_photo.comments.count %></p>
       <div>
         <% if current_poster.user_name != "@guest" %>
          <%= form_with model: [@post_photo, @comment] do |f| %>
