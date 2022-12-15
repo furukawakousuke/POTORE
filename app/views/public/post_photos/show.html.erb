@@ -44,14 +44,14 @@
        <% @post_photo.comments.each do |comment| %>
        <%= image_tag comment.poster.get_image(100,100),:size => '30x30',class:"rounded-circle mr-2 " %>
        <%= comment.poster.name %><br>
-       <%= comment.text %><p class="ml-5 text-right"><%= comment.created_at.strftime('%Y/%m/%d') %></p>
+       <%= comment.text %><p class="ml-5 text-right"><%= comment.created_at.strftime('%Y/%m/%d') %>
 
         <% if comment.poster == current_poster %>
           <% if current_poster.user_name != "@guest" %>
           <%= link_to "削除", post_photo_comment_path(comment.post_photo, comment), method: :delete,class:"btn btn-outline-danger btn-sm" %>
           <% end %>
         <% end %>
-       <% end %>
+       <% end %></p>
       <p class="text-secondary text-right">コメント件数：<%= @post_photo.comments.count %></p>
       <div>
         <% if current_poster.user_name != "@guest" %>
