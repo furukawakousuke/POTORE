@@ -28,6 +28,9 @@
 
       <%= render'map' %>
 
+      <%= f.hidden_field :latitude, id: 'lat' %>
+     <%= f.hidden_field :longitude, id: 'lng' %>
+
 
       <div class="text-center mt-3">
       <%= f.submit "Post",class:"btn btn-outline-dark btn-sm px-4 text-center" %>

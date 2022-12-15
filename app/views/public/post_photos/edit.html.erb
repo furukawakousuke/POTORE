@@ -10,6 +10,8 @@
       <%= f.text_area :introduction,size: '40x5' %><br>
       <%= f.label :address,"Spot",class:"lead" %><br>
      <%= f.hidden_field :address,size: '40x5',id: :spot %><br>
+     <%= f.hidden_field :latitude, id: 'lat' %>
+     <%= f.hidden_field :longitude, id: 'lng' %>
      <%= render'map' %>
       <div class="text-center">
       <%= f.submit "Edit",class:"btn btn-outline-dark btn-sm px-3 mt-3" %>
