@@ -1,5 +1,7 @@
 class Public::PostPhotosController < ApplicationController
   before_action :authenticate_poster!
+  before_action :specified_post_photo, only: [:edit, :update]
+    before_action :specified_poster, only: [:edit] 
 
   def new
     @post_photo = PostPhoto.new
@@ -59,4 +61,12 @@ private
   def post_photo_params
     params.require(:post_photo).permit(:introduction,:address,:longitude,
     :latitude,:image)
+  end
+  
+  def specified_post_photo
+    @post_photo = PostPhoto.find(params[:id])
+  end
+  
+  def specified_poster
+    redirect_to post_photos_path unless @post_photo.poster_id == current_poster.id 
   end
