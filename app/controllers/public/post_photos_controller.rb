@@ -1,7 +1,7 @@
 class Public::PostPhotosController < ApplicationController
   before_action :authenticate_poster!
   before_action :specified_post_photo, only: [:edit, :update]
-    before_action :specified_poster, only: [:edit] 
+  before_action :specified_poster, only: [:edit] 
 
   def new
     @post_photo = PostPhoto.new
@@ -19,7 +19,6 @@ class Public::PostPhotosController < ApplicationController
 
   def index
     @post_photos = PostPhoto.order(created_at: :desc).page(params[:page])
-    @poster = Poster.order(created_at: :desc).page(params[:page])
   end
 
   def show
@@ -32,18 +31,17 @@ class Public::PostPhotosController < ApplicationController
 
   end
   def search
-  @keyword = "「#{params[:search]}」の検索結果"
-  @photos = if params[:search].present?
-             PostPhoto.where(['address LIKE ? OR introduction LIKE ?',
+     @keyword = "「#{params[:search]}」の検索結果"
+     @photos = if params[:search].present?
+     PostPhoto.where(['address LIKE ? OR introduction LIKE ?',
                         "%#{params[:search]}%", "%#{params[:search]}%"])
-           else
-             PostPhoto.none
-           end
+    else
+     PostPhoto.none
+    end
   end
 
   def update
     @post_photo = PostPhoto.find(params[:id])
-    #@post_photo = current_poster
     @post_photo.update(post_photo_params)
     redirect_to post_photo_path(@post_photo.id)
   end

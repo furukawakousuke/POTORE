@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row">
     <div class="col-11">
-             <h4 class="lead mt-3">Search</h4>
- <div class="text-center">
-  <%= form_with url: search_posters_path, method: :get, local: true do |f| %>
-    <%= f.text_field :search, class: 'mt-3 mb-5', placeholder: "キーワード検索",:size=>"30"  %>
-    <%= f.button :type => "submit" do %>
-      <i class="fas fa-search"></i>
-    <% end %>
-  <% end %>
+     <h4 class="lead mt-3">Search</h4>
+     <div class="text-center">
+      <%= form_with url: search_posters_path, method: :get, local: true do |f| %>
+      <%= f.text_field :search, class: 'mt-3 mb-5', placeholder: "キーワード検索",:size=>"30"  %>
+       <%= f.button :type => "submit" do %>
+        <i class="fas fa-search"></i>
+       <% end %>
+      <% end %>
    </div>  
       <ul class="">
        <% @posters.each do |poster| %>

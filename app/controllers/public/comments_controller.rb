@@ -9,9 +9,9 @@ class Public::CommentsController < ApplicationController
 	  
   if @comment.save
      @post.create_notification_comment!(current_poster, @comment.id)
-  redirect_to post_photo_path(post_photo)
+     redirect_to post_photo_path(post_photo)
   else
-  render 'post_photo/show'
+     render 'post_photo/show'
   end
  end
  
