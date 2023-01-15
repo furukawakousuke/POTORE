@@ -18,7 +18,13 @@
 
  <% end %>
       <%= f.label :image,"Posted Photo",class:"lead mt-3 ml-3" %><br>
-      <div class="text-center"><%= f.file_field :image,accept:"image/*" ,class:"ml-4" %><br></div>
+      <div class="text-center ml-5 ">
+        
+         <%= f.file_field :image,accept:"image/*", class: "", value: @post_photo.image %>
+        <!--f.file_field :image,accept:"image/*".class:"" -->
+       </label><br>
+         <%= @post_photo.image.present? ? @post_photo.image.filename: "" %>
+      </div>
 
       <%= f.label :introduction,"Caption",class:"lead mt-3 ml-3" %><br>
       <div class="text-center"><%= f.text_area :introduction, size: "40x5", class:"ml-4" %><br></div>

@@ -5,6 +5,8 @@ class Public::PostPhotosController < ApplicationController
 
   def new
     @post_photo = PostPhoto.new
+    
+   
   end
 
   def create
