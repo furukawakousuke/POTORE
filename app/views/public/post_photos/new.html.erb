@@ -19,9 +19,8 @@
  <% end %>
       <%= f.label :image,"Posted Photo",class:"lead mt-3 ml-3" %><br>
       <div class="text-center ml-5 ">
-        
-         <%= f.file_field :image,accept:"image/*", class: "", value: @post_photo.image %>
-        <!--f.file_field :image,accept:"image/*".class:"" -->
+
+         <%= f.file_field :image,accept:"image/*", class: ""  %>
        </label><br>
          <%= @post_photo.image.present? ? @post_photo.image.filename: "" %>
       </div>
@@ -29,21 +28,18 @@
       <%= f.label :introduction,"Caption",class:"lead mt-3 ml-3" %><br>
       <div class="text-center"><%= f.text_area :introduction, size: "40x5", class:"ml-4" %><br></div>
 
-      <%= f.label :address,"Spot",class:"lead mt-3 ml-3" %><br>
-          <div class="text-center"><%= f.hidden_field :address,id: :spot,size: "10x0",class:"ml-4" %></div>
+      <%= f.label :address,"Spot",class:"lead mt-3 ml-3 mb-0" %><br>
+          <div class="text-center"><%= f.hidden_field :address,id: :spot %></div>
 
-      <%= render'map' %>
-
-      <%= f.hidden_field :latitude, id: 'lat' %>
-     <%= f.hidden_field :longitude, id: 'lng' %>
-
-
+          <span class="ml-4 mt-0 p-0 small">※記入後🔍ボタンを必ず押してください。</span>
+          <%= render'map' %>
+          <%= f.hidden_field :latitude, id: 'lat' %>
+          <%= f.hidden_field :longitude, id: 'lng' %>
       <div class="text-center mt-3">
       <%= f.submit "Post",class:"btn btn-outline-dark btn-sm px-4 text-center" %>
       </div>
 
     </div>
   <% end %>
-    <div class="col-"></div>
   </div>
 </div>
