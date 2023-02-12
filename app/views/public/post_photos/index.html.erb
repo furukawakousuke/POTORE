@@ -15,6 +15,7 @@
   <div class="row">
     <% @post_photos.each do |post_photo| %>
     <div class="col-lg-2 col-xl-2 col-0"></div>
+     
     <div class="col-10 col-lg-7 col-xl-7 px-3 bg-white border-bottom w-100 mb-2 mx-5">
       <%= link_to post_photo_path(post_photo.id) do %>
        <%= image_tag post_photo.get_image(100,100),class:"mt-4 img-fluid" %>
@@ -29,6 +30,12 @@
       <%=safe_join(post_photo.introduction.split("\n"),tag(:br))%>
       <div class="py-3"></div>
   </div>
+    <span id="back" class="float-left  text-dark" >
+      <a href="#">
+        <i class="fa-solid fa-circle-chevron-up text-dark h2 position-fixed top-0 start-0"></i>
+      </a>
+    </span>
     <% end %>
   </div>
+    <%= paginate @post_photos %>
 </div>
