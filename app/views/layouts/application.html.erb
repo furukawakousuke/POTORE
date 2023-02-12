@@ -70,63 +70,51 @@
       </div>
     </nav>
     </header>
-
-
-
     <main class="mb-5 pb-5">
     <%= yield %>
     </main>
-
-
-
     <footer class="bg-light text-white  fixed-bottom mt-3 py-0 border-top">
       <div class="container">
         <div class="row no-gutters">
           <div class="col-12 d-flex justify-content-around">
             <nav class="navbar navbar-expand navbar-light bg-light pt-2">
-        <!--<a class="navbar-brand" href="/post_photos"><span class="text-dark lead">POTORE</span></a>
-        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                       aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-        </button>-->
-          <ul class="navbar-nav ml-auto ">
-
-      <% if poster_signed_in? %>
-      <li class="nav-item" >
-         <%= link_to poster_path(current_poster), class:" mr-4 " do %>
-         <%= image_tag current_poster.get_image(10,10),:size => '40x40',class:"rounded-circle" %>
-         <% end %>
-        </li>
-      <li class="nav-item">
-        <%= link_to posters_path,class:"btn btn-outline-dark mx-4 " do  %>
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <% end %>
-        </li>
-        
-        <% if current_poster.user_name != "@guest" %> 
-      <li class="nav-item">
-        <%= link_to new_post_photo_path,class:"btn mr-2 " do  %>
-        <i class="fa-solid fa-circle-plus  fa-2x"></i>
-        <% end %>
-      </li>
-      <% end %>
-      <li class="nav-item" >
-        <%= link_to post_photos_path, class:"btn btn-outline-dark mx-4 " do %>
-        <i class="fa-solid fa-images"></i>
-        <% end %>
-      </li>
-      <% if current_poster.user_name != "@guest" %>
-      <li class="nav-item">
-        <%= link_to edit_poster_path(current_poster) , class:"btn btn-outline-dark ml-4 " do %>
-        <i class="fa-solid fa-user-gear"></i>
-        <% end %>
-      </li>
-      <% end %>
-      <% end %>
-      </ul>
-      </div>
-      </div>
-    </nav>
+              <ul class="navbar-nav ml-auto ">
+              <% if poster_signed_in? %>
+                <li class="nav-item" >
+                   <%= link_to poster_path(current_poster), class:" mr-4 " do %>
+                   <%= image_tag current_poster.get_image(10,10),:size => '40x40',class:"rounded-circle" %>
+                   <% end %>
+                  </li>
+                <li class="nav-item">
+                  <%= link_to posters_path,class:"btn btn-outline-dark mx-4 " do  %>
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                  <% end %>
+                  </li>
+                  
+                  <% if current_poster.user_name != "@guest" %> 
+                <li class="nav-item">
+                  <%= link_to new_post_photo_path,class:"btn mr-2 " do  %>
+                  <i class="fa-solid fa-circle-plus  fa-2x"></i>
+                  <% end %>
+                </li>
+                <% end %>
+                <li class="nav-item" >
+                  <%= link_to post_photos_path, class:"btn btn-outline-dark mx-4 " do %>
+                  <i class="fa-solid fa-images"></i>
+                  <% end %>
+                </li>
+                <% if current_poster.user_name != "@guest" %>
+                <li class="nav-item">
+                  <%= link_to edit_poster_path(current_poster) , class:"btn btn-outline-dark ml-4 " do %>
+                  <i class="fa-solid fa-user-gear"></i>
+                  <% end %>
+                </li>
+                <% end %>
+              <% end %>
+              </ul>
+              </div>
+              </div>
+            </nav>
           </div>
         </div>
       </div>
