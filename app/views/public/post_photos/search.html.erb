@@ -1,9 +1,9 @@
   <!--<p>クラス名などは省略してあります</p> -->
   <div class="container">
   <h5> "<%= @keyword %>"</h5>
-    <div class="row mx-2">
+    <div class="row ">
     <% @photos.each do |photo| %>
-       <div class="col-lg-3 col-md-4 col-6 mt-3">
+       <div class="col-lg-3 col-4 mt-3 px-0">
         <%= link_to post_photo_path(photo.id),class:"btn text-dark" do %>
           <%= image_tag photo.get_image(100,100),class:"img-fluid" %><br>
         <%= photo.address %>

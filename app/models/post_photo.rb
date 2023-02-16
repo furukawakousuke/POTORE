@@ -3,6 +3,7 @@ class PostPhoto < ApplicationRecord
   belongs_to :poster
   has_many :comments,dependent: :destroy
   has_many :favorites,dependent: :destroy
+  
   has_many :reports ,dependent: :destroy
   has_many :notifications,dependent: :destroy
  validates:address, presence:true
