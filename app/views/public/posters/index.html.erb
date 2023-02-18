@@ -15,7 +15,7 @@
      <% if poster.user_name != "@guest" %>
       <li class="border-bottom list-unstyled font-weight-bold">
       <%= link_to poster_path(poster.id) do %>
-      <%= image_tag poster.get_image(100,100).variant(gravity: :center, resize:"640x640^", crop:"640x640+0+0"),:size => '80x80',class:"rounded-circle mr-4 my-3" %>
+      <%= image_tag poster.get_image.variant(gravity: :center, resize:"640x640^", crop:"640x640+0+0"),:size => '80x80',class:"rounded-circle mr-4 my-3" %>
       <% if poster.name != nil  %>
       <span class="text-dark"><%= poster.name %></span>
       <% else %>

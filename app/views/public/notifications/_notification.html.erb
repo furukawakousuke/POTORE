@@ -4,7 +4,7 @@
       <% poster = Poster.find_by(id: notification.visitor_id) %>
     <div class="col-2 border-bottom">
       <%= link_to poster_path(notification.visitor) do %>
-        <%= image_tag poster.get_image(100,100),:size => '80x80',class:"rounded-circle mt-2" %>
+        <%= image_tag poster.get_image,:size => '80x80',class:"rounded-circle mt-2" %>
       <% end %>
     </div>
       <div class="col-6 pt-4 border-bottom w-50">

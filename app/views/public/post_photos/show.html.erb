@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row mt-5">
     <div class="col-lg-6 col-12">
-      <%= image_tag @post_photo.get_image(100,100),class:"mt-5 img-fluid" %>
+      <%= image_tag @post_photo.get_image,class:"mt-5 img-fluid" %>
       <%= link_to "http://twitter.com/share?url=#{request.url}/&text=ポートレートに広がりを・・・/&hashtags=POTORE",{class:"footer-icon_3"} do %>
       <i class="fa-brands fa-twitter h2 mt-4 mr-3"></i><% end %>
       <%= render 'line', post_photo: @post_photo %>
       </div>
     <div class="col-lg-6 col-12">
       <%= link_to poster_path(@post_photo.poster.id) do %>
-      <%= image_tag @post_photo.poster.get_image(100,100),:size => '80x80',class:"rounded-circle mr-2 mt-2 " %>
+      <%= image_tag @post_photo.poster.get_image,:size => '80x80',class:"rounded-circle mr-2 mt-2 " %>
       <% end %>
       <%= @post_photo.poster.user_name %>
       <% if current_poster.user_name != "@guest" %>
@@ -42,7 +42,7 @@
       <!-- コメントの記述 -->
 
        <% @post_photo.comments.each do |comment| %>
-       <%= image_tag comment.poster.get_image(100,100),:size => '30x30',class:"rounded-circle mr-2 " %>
+       <%= image_tag comment.poster.get_image,:size => '30x30',class:"rounded-circle mr-2 " %>
        <%= comment.poster.name %><br>
        <%= comment.text %><p class="ml-5 text-right">
          <% if comment.poster == current_poster %>

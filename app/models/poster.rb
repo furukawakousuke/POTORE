@@ -23,24 +23,14 @@ class Poster < ApplicationRecord
   has_many :reverse_of_reports, class_name: "Report",
   foreign_key: :reported_id, dependent: :destroy
 
-    def self.guest
+  def self.guest
     find_or_create_by!(email: 'guest@example.com') do |poster|
-      poster.password = SecureRandom.urlsafe_base64
-      poster.user_name = "@guest"
-      # poster.confirmed_at = Time.now  # Confirmable を使用している場合は必要
-      # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
-      end
+    poster.password = SecureRandom.urlsafe_base64
+    poster.user_name = "@guest"
     end
+  end
 
-   def get_image
-    if image.attached?
-      image
-    else
-      'no_image.jpg'
-    end
-   end
-
-  def get_image(height,width)
+  def get_image
    unless profile_image.attached?
      file_path = Rails.root.join('app/assets/images/no_image.jpg')
      profile_image.attach(io:File.open(file_path),filename: 'default-image.png',content_type: 'image/jpeg')
@@ -48,22 +38,17 @@ class Poster < ApplicationRecord
     profile_image
   end
 
-# フォローしたときの処理
-def follow(poster_id)
-  relationships.create(follower_id: poster_id)
-end
-# フォローを外すときの処理
-def unfollow(poster_id)
-  relationships.find_by(follower_id: poster_id).destroy
-end
-# フォローしているか判定
-def following?(poster)
+  def follow(poster_id)
+    relationships.create(follower_id: poster_id)
+  end
 
-  pp "-------------------------------------------"
-  pp poster
-  pp "--------------------------------------------"
-  followers.include?(poster)
-end
+  def unfollow(poster_id)
+    relationships.find_by(follower_id: poster_id).destroy
+  end
+  
+  def following?(poster)
+    followers.include?(poster)
+  end
 
  def create_notification_follow!(current_poster)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_poster.id, id, 'follow'])
@@ -75,6 +60,4 @@ end
       notification.save if notification.valid?
     end
  end
-
-
 end

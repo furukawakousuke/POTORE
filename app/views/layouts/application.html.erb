@@ -82,7 +82,7 @@
               <% if poster_signed_in? %>
                 <li class="nav-item" >
                    <%= link_to poster_path(current_poster), class:" mr-4 " do %>
-                   <%= image_tag current_poster.get_image(10,10),:size => '40x40',class:"rounded-circle" %>
+                   <%= image_tag current_poster.get_image,:size => '40x40',class:"rounded-circle" %>
                    <% end %>
                   </li>
                 <li class="nav-item">

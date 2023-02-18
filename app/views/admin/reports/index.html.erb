@@ -26,7 +26,7 @@
             <td><%= link_to admin_poster_path(report.reported),class:"btn btn-light btn-sm" do %>
             <%= report.reported.user_name %><% end %>
             <td ><%= link_to admin_post_photo_path(report.post_photo) do %>
-            <%= image_tag report.post_photo.get_image(100,100),:size=>"100",class:"img-fluid" %><% end %>
+            <%= image_tag report.post_photo.get_image,:size=>"100",class:"img-fluid" %><% end %>
             <td><%= report.updated_at.strftime('%Y/%m/%d') %>
           </tr>
           <% end %>

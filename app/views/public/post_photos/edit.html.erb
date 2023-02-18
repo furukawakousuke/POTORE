@@ -3,7 +3,7 @@
     <div class="col-md-3 col-sm-2 col-1"></div>
     <div class="col-6 mt-5">
       <% if "425px" %>
-       <%= image_tag @post_photo.get_image(10,10),:size=>'300x200',class:"ml-4" %>
+       <%= image_tag @post_photo.get_image,:size=>'300x200',class:"ml-4" %>
       <% end %>
       <%= form_with model: @post_photo,url: post_photo_path(@post_photo.id),method: :patch do |f| %>
        <%= f.label :introduction,"Caption",class:"lead mt-2" %><br>
