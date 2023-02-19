@@ -1,21 +1,21 @@
-<div class="container">
-  <div class="row">
-    <div class="col-2"></div>
-      <% poster = Poster.find_by(id: notification.visitor_id) %>
-    <div class="col-2 border-bottom">
-      <%= link_to poster_path(notification.visitor) do %>
-        <%= image_tag poster.get_image,:size => '80x80',class:"rounded-circle mt-2" %>
-      <% end %>
-    </div>
-      <div class="col-6 pt-4 border-bottom w-50">
-        <%= notification_form(notification) %><span class="moderate-font"><%= "(#{time_ago_in_words(notification.created_at)} 前)" %></span>
-        <br>
-        <% if !@comment.nil? %>
-          <p class="moderate-font text-left" style="color: #C0C0C0;"><%= @comment %></p>
-        <% end %>
-        <% if !@report.nil? %>
-          <p class="moderate-font text-left" style="color: #FF0000;"><%= @report %></p>
-        <% end %>
-    </div>
-  </div>
-</div>
+
+      <table class="table table-borderless mx-auto">
+        <% poster = Poster.find_by(id: notification.visitor_id) %>
+        <tr>
+          <td class=" border-bottom">
+            <%= link_to poster_path(notification.visitor) do %>
+            <%= image_tag poster.get_image,:size => '60x60',class:"rounded-circle" %>
+            <% end %>
+          </td>
+          <td class="px-0 border-bottom">
+            <%= notification_form(notification) %><span class="moderate-font"><%= "(#{time_ago_in_words(notification.created_at)} 前)" %></span>
+            <br>
+            <% if !@comment.nil? %>
+            <p class="moderate-font text-left" style="color: #C0C0C0;"><%= @comment %></p>
+            <% end %>
+            <% if !@report.nil? %>
+            <p class="moderate-font text-left" style="color: #FF0000;"><%= @report %></p>
+            <% end %>
+          </td>
+        </tr>
+      </table>

@@ -1,21 +1,30 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3 col-sm-2 col-1"></div>
-    <div class="col-6 mt-5">
-      <% if "425px" %>
-       <%= image_tag @post_photo.get_image,:size=>'300x200',class:"ml-4" %>
-      <% end %>
+    <div class="col-12 mt-5 mx-auto">
+     <%= image_tag @post_photo.get_image,:size=>'300x200',class:"d-block text-center mx-auto" %>
       <%= form_with model: @post_photo,url: post_photo_path(@post_photo.id),method: :patch do |f| %>
-       <%= f.label :introduction,"Caption",class:"lead mt-2" %><br>
-       <%= f.text_area :introduction,size: '40x5' %><br>
-       <%= f.label :address,"Spot",class:"lead" %><br>
-       <%= f.hidden_field :address,size: '40x5',id: :spot %><br>
-       <%= f.hidden_field :latitude, id: 'lat' %>
-       <%= f.hidden_field :longitude, id: 'lng' %>
-       <%= render'map' %>
-       <div class="text-center">
-        <%= f.submit "Edit",class:"btn btn-outline-dark btn-sm px-3 mt-3" %>
-       </div>
+       <table class="mx-auto">
+         <tr>
+           <td><%= f.label :introduction,"Caption",class:"lead" %></td>
+         </tr>
+           <tr>
+            <td class="ml-3"><%= f.text_area :introduction,size: '40x5',class:"ml-4" %></td> 
+           </tr>
+         <tr>
+           <td><%= f.label :address,"Spot",class:"lead" %></td>
+           <td><%= f.hidden_field :address,size: '40',id: :spot %></td>
+         </tr>
+         <tr>
+           <td>
+             <%= f.hidden_field :latitude, id: 'lat' %>
+             <%= f.hidden_field :longitude, id: 'lng' %>
+             <%= render'map' %>
+           </td>
+         </tr>
+         <tr>
+           <td><%= f.submit "Edit",class:"btn btn-outline-dark btn-sm d-block mx-auto px-3 mt-5" %></td>
+         </tr>
+       </table>
       <% end %>
     </div>
   </div>

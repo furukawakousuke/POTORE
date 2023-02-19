@@ -7,16 +7,15 @@
   <% end %>
   </div>
   <div class="row">
-    <div class="col-12">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 col-12 mx-auto">
       <!--/ 自分の投稿に対するいいね、コメントは通知に表示しない -->
-
      <% if @notifications.exists? %>
-      <div class="users-index">
-       <%= render@notifications, poster:@poster,visitor:@visitor %>
-      </div>
+       <%= render @notifications, poster:@poster,visitor:@visitor %>
      <% else %>
       <p>通知はありません</p>
      <% end %>
     </div>
+    <div class="col-md-2"></div>
   </div>
 </div>
