@@ -11,11 +11,9 @@
             <td class="ml-3"><%= f.text_area :introduction,size: '40x5',class:"ml-4" %></td> 
            </tr>
          <tr>
-           <td><%= f.label :address,"Spot",class:"lead" %></td>
-           <td><%= f.hidden_field :address,size: '40',id: :spot %></td>
-         </tr>
-         <tr>
-           <td>
+           <td><%= f.label :address,"Spot",class:"lead" %><br>
+             <%= f.hidden_field :address,size: '40',id: :spot %>
+             <span class="ml-4  small">※記入後🔍ボタンを必ず押してください。</span><br>
              <%= f.hidden_field :latitude, id: 'lat' %>
              <%= f.hidden_field :longitude, id: 'lng' %>
              <%= render'map' %>
