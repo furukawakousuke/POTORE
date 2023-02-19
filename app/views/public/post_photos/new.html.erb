@@ -30,9 +30,9 @@
         <%= f.label :address,"Spot",class:"lead" %><br>
         <%= f.hidden_field :address,id: :spot %>
         <span class="ml-4  small">※記入後🔍ボタンを必ず押してください。</span><br>
-        <%= render'map' %>
         <%= f.hidden_field :latitude, id: 'lat' %>
         <%= f.hidden_field :longitude, id: 'lng' %>
+        <%= render'map' %>
       </td>
     </tr>
     <tr>
