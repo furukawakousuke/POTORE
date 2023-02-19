@@ -1,45 +1,45 @@
 <div class="container">
   <div class="row">
-    <div class="col-1 col-lg-3 col-md-2"></div>
-    <div class="col-9 col-lg-4 col-md-6">
+    <div class="col-12">
   <%= form_with model: @post_photo,url: post_photos_path,method: :post do |f| %>
-
   <% if @post_photo.errors.any? %>
- <div id="error">
-   <div class="errors-text">
-  <%= @post_photo.errors.count %>errors prohibited this book from being saved:
-  </div>
- <ul>
-   <% @post_photo.errors.full_messages.each do |message| %>
-   <li class="error-message"><%= message %></li>
-   <% end %>
- </ul>
- </div>
-
- <% end %>
-      <%= f.label :image,"Posted Photo",class:"lead mt-3 ml-3" %><br>
-      <div class="text-center ml-5 ">
-
-         <%= f.file_field :image,accept:"image/*", class: ""  %>
-       </label><br>
-         <%= @post_photo.image.present? ? @post_photo.image.filename: "" %>
-      </div>
-
-      <%= f.label :introduction,"Caption",class:"lead mt-3 ml-3" %><br>
-      <div class="text-center"><%= f.text_area :introduction, size: "40x5", class:"ml-4" %><br></div>
-
-      <%= f.label :address,"Spot",class:"lead mt-3 ml-3 mb-0" %><br>
-          <div class="text-center"><%= f.hidden_field :address,id: :spot %></div>
-
-          <span class="ml-4 mt-0 p-0 small">※記入後🔍ボタンを必ず押してください。</span>
-          <%= render'map' %>
-          <%= f.hidden_field :latitude, id: 'lat' %>
-          <%= f.hidden_field :longitude, id: 'lng' %>
-      <div class="text-center mt-3">
-      <%= f.submit "Post",class:"btn btn-outline-dark btn-sm px-4 text-center" %>
-      </div>
-
+   <div id="error">
+    <div class="errors-text">
+     <%= @post_photo.errors.count %>errors prohibited this book from being saved:
     </div>
+    <ul>
+      <% @post_photo.errors.full_messages.each do |message| %>
+      <li class="error-message"><%= message %></li>
+      <% end %>
+    </ul>
+   </div>
   <% end %>
+  <table class="mx-auto">
+    <tr>
+      <td><%= f.label :image,"Posted Photo",class:"lead mt-3" %><br>
+      <%= f.file_field :image,accept:"image/*", class: "ml-4"  %></td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.label :introduction,"Caption",class:"lead" %><br>
+        <%= f.text_area :introduction, size: "40x5", class:"ml-4" %><br>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.label :address,"Spot",class:"lead" %><br>
+        <%= f.hidden_field :address,id: :spot %>
+        <span class="ml-4  small">※記入後🔍ボタンを必ず押してください。</span><br>
+        <%= render'map' %>
+        <%= f.hidden_field :latitude, id: 'lat' %>
+        <%= f.hidden_field :longitude, id: 'lng' %>
+      </td>
+    </tr>
+    <tr>
+      <td><%= f.submit "Post",class:"btn btn-outline-dark btn-sm px-4 d-block mx-auto" %></td>
+    </tr>
+  </table>
+  <% end %>
+    </div>
   </div>
 </div>

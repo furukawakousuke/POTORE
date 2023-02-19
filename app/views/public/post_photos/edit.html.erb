@@ -16,13 +16,14 @@
          </tr>
          <tr>
            <td>
+             <span class="ml-4 mt-0 p-0 small">※記入後🔍ボタンを必ず押してください。</span><br>
              <%= f.hidden_field :latitude, id: 'lat' %>
              <%= f.hidden_field :longitude, id: 'lng' %>
              <%= render'map' %>
            </td>
          </tr>
          <tr>
-           <td><%= f.submit "Edit",class:"btn btn-outline-dark btn-sm d-block mx-auto px-3 mt-5" %></td>
+           <td><%= f.submit "Edit",class:"btn btn-outline-dark btn-sm d-block mx-auto px-3 mt-1" %></td>
          </tr>
        </table>
       <% end %>
